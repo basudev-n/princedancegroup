@@ -1,0 +1,367 @@
+@import "tailwindcss";
+
+/*
+  Design tokens — copied verbatim from DESIGN.md §9 (the site-wide,
+  Stitch-exact system; see PROGRESS.md Phase 6). Do not hand-tune a value
+  here without updating DESIGN.md first (ARCHITECTURE.md §10).
+
+  This file previously held a separate "editorial" token set (DESIGN.md
+  §1–6) built from an unused project-level Stitch doc. That system has been
+  fully migrated away from (every page now uses the system below) and its
+  tokens — along with the old-system components that were their only
+  consumers — have been removed. DESIGN.md §1–6 is kept only as a
+  historical record of the discarded system; nothing in code references it.
+*/
+@theme {
+  /* TODO.md Phase 3.1: sitewide focus-ring color, used by the global
+     `:focus-visible` rule below. Not part of either the Danza or
+     Nocturne token sets — deliberately neutral so it reads correctly on
+     both dark systems without favoring either one's own brand gold. Per
+     ARCHITECTURE.md §1 rule 4, defined here rather than hardcoded in the
+     rule itself. */
+  --color-focus-ring: #ffffff;
+
+  /* Colors — Material Design 3, verbatim from the Stitch Home screen */
+  --color-primary: #000000;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #1b1b1b;
+  --color-on-primary-container: #848484;
+
+  --color-secondary: #0051d5;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #316bf3;
+  --color-on-secondary-container: #fefcff;
+
+  --color-tertiary: #000000;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #001e2c;
+  --color-on-tertiary-container: #008ebf;
+
+  --color-surface: #faf9fd;
+  --color-on-surface: #1b1b1f;
+  --color-surface-variant: #e3e2e6;
+  --color-on-surface-variant: #4c4546;
+  --color-surface-dim: #dbd9dd;
+  --color-surface-bright: #faf9fd;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f5f3f7;
+  --color-surface-container: #efedf1;
+  --color-surface-container-high: #e9e7ec;
+  --color-surface-container-highest: #e3e2e6;
+  --color-background: #faf9fd;
+
+  --color-inverse-surface: #2f3034;
+  --color-inverse-on-surface: #f2f0f4;
+  --color-inverse-primary: #c6c6c6;
+
+  --color-outline: #7e7576;
+  --color-outline-variant: #cfc4c5;
+
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  /* Typography — Plus Jakarta Sans. Tokens are `home-`-prefixed for
+     historical reasons (first proven out on the Home page rebuild) — see
+     DESIGN.md §9's note; there is no separate "site" scale. Always pair a
+     size token with an explicit font-* weight utility (weight isn't baked
+     into the token). */
+  --font-jakarta: var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, sans-serif;
+
+  --text-home-headline-xl: 56px;
+  --text-home-headline-xl--line-height: 64px;
+  --text-home-headline-xl--letter-spacing: -0.03em;
+
+  --text-home-headline-lg: 40px;
+  --text-home-headline-lg--line-height: 48px;
+  --text-home-headline-lg--letter-spacing: -0.02em;
+
+  --text-home-headline-md: 28px;
+  --text-home-headline-md--line-height: 36px;
+  --text-home-headline-md--letter-spacing: -0.015em;
+
+  --text-home-headline-sm: 20px;
+  --text-home-headline-sm--line-height: 28px;
+  --text-home-headline-sm--letter-spacing: -0.01em;
+
+  --text-home-title-lg: 18px;
+  --text-home-title-lg--line-height: 24px;
+  --text-home-title-lg--letter-spacing: -0.005em;
+
+  --text-home-body-lg: 16px;
+  --text-home-body-lg--line-height: 26px;
+  --text-home-body-lg--letter-spacing: 0em;
+
+  --text-home-body-md: 14px;
+  --text-home-body-md--line-height: 22px;
+  --text-home-body-md--letter-spacing: 0em;
+
+  --text-home-label-lg: 14px;
+  --text-home-label-lg--line-height: 18px;
+  --text-home-label-lg--letter-spacing: 0.01em;
+
+  --text-home-label-md: 12px;
+  --text-home-label-md--line-height: 16px;
+  --text-home-label-md--letter-spacing: 0.02em;
+
+  --text-home-label-sm: 10px;
+  --text-home-label-sm--line-height: 14px;
+  --text-home-label-sm--letter-spacing: 0.06em;
+
+  /*
+    Spacing: named (not Tailwind's numeric scale) because Stitch's own
+    source uses these exact names. Safe to define — Tailwind v4 reuses the
+    bare `sm/md/lg/xl/2xl/3xl/4xl` keys internally for `max-w-*`/`w-*`/
+    `size-*`, but these are namespaced under `space-*`/`layout-*`, which
+    don't collide with anything built in (see DESIGN.md §4's incident note
+    for what happens when a spacing token *does* collide).
+  */
+  --spacing-space-2xs: 0.25rem;
+  --spacing-space-xs: 0.5rem;
+  --spacing-space-sm: 0.75rem;
+  --spacing-space-md: 1rem;
+  --spacing-space-lg: 1.5rem;
+  --spacing-space-xl: 2rem;
+  --spacing-space-2xl: 3rem;
+  --spacing-space-3xl: 4rem;
+  --spacing-space-4xl: 6rem;
+  --spacing-layout-margin-mobile: 1.25rem;
+  --spacing-layout-margin-tablet: 2rem;
+  --spacing-layout-margin-desktop: 3.5rem;
+  --spacing-layout-gutter: 1.5rem;
+
+  /* Shape — custom names, not Tailwind's own rounded-lg/xl/full, so the
+     source of a radius value is always unambiguous (DESIGN.md §9.4). */
+  --radius-card: 1rem;
+  --radius-panel: 2rem;
+  --radius-hero: 3rem;
+  --radius-full: 9999px;
+
+  /*
+    ---------------------------------------------------------------------
+    Danza Theatrical tokens — DESIGN.md §13. Home page only (client-
+    confirmed redesign, 2026-09-20; supersedes the §9 system above for `/`
+    specifically — see DESIGN.md §13's opening note on scope). Bespoke
+    names, verbatim from the Stitch screen's own tailwind config — every
+    name here is new, no collision with the §9 tokens above (verified:
+    `surface-stage/card/elevated/border` and `danza-*` don't exist above).
+    No custom radius/spacing scale needed — this screen uses Tailwind's own
+    built-in defaults (`rounded-lg`, `rounded-2xl`, `p-4`, `gap-8`, etc.)
+    directly, and nothing on the live site currently uses those default
+    keys, so there's nothing to collide with.
+    ---------------------------------------------------------------------
+  */
+  --color-surface-stage: #0d0e12;
+  --color-surface-card: #181a20;
+  --color-surface-elevated: #20232a;
+  --color-surface-border: #282a32;
+
+  --color-danza-crimson: #e11d48;
+  --color-danza-crimson-hover: #f43f5e;
+  --color-danza-gold: #f59e0b;
+  --color-danza-cyan: #38bdf8;
+  /* TODO.md Phase 3.1 / DESIGN.md §31: dedicated error-text color for
+     `role="alert"` form messages. Plain `--color-danza-crimson` measures
+     ~3.3-3.4:1 against the dark card surfaces those messages render on
+     (below the 4.5:1 WCAG AA text minimum) — this lighter rose reaches
+     5.7-6.5:1 across surface-card/surface-elevated while still reading
+     unambiguously as an error/danger color. Decorative crimson usage
+     elsewhere (buttons, badges, bokeh) is unaffected — this token is only
+     for error text specifically. */
+  --color-danza-error: #fb7185;
+
+  --color-on-surface-danza: #f1f5f9;
+  --color-on-surface-danza-muted: #94a3b8;
+  /* TODO.md Phase 3.1 / DESIGN.md §31: was #64748b — measured 3.3-4.05:1
+     against the site's dark surfaces (surface-stage/card/elevated), below
+     the 4.5:1 WCAG AA minimum for normal text, and used at `text-[10px]`/
+     `text-[11px]` in several places (the entire footer bottom bar
+     included), which makes low contrast worse, not exempt from it. This
+     value reaches 5.3-6.5:1 across all three dark surfaces. */
+  --color-on-surface-danza-dim: #8b97a8;
+
+  /* Danza typography (DESIGN.md §13.2) — Plus Jakarta Sans already loaded
+     site-wide; Playfair Display re-added here, scoped to Home only via
+     `app/fonts.ts`'s `playfairDisplay` export (not applied to <body>). */
+  --font-headline-danza: var(--font-playfair-display), Georgia, serif;
+
+  /*
+    ---------------------------------------------------------------------
+    Nocturne Stage tokens — DESIGN.md §14. About page first; this is the
+    *verified real* target design system (confirmed against the actual
+    "Nocturne Stage" Stitch asset, unlike Danza above which used an
+    unconfirmed draft). All colors prefixed `nocturne-` — every M3 role
+    name here (primary/secondary/surface/etc.) exists in §9 above with a
+    genuinely different value, so an unprefixed name would silently
+    corrupt the still-live §9 pages (Services/Gallery/Journal/Contact).
+    No custom spacing tokens — this screen's own spacing scale mostly
+    coincides with Tailwind's numeric defaults at the values that matter,
+    so components use Tailwind's built-in scale directly (same approach
+    as Danza's §13.3). Radius *is* custom (values don't match anything
+    already defined, including Danza's own reliance on Tailwind defaults).
+    ---------------------------------------------------------------------
+  */
+  --color-nocturne-primary: #ffb2be;
+  --color-nocturne-on-primary: #660025;
+  --color-nocturne-primary-container: #ff4e7c;
+  --color-nocturne-on-primary-container: #5a0020;
+
+  --color-nocturne-secondary: #e9c349;
+  --color-nocturne-on-secondary: #3c2f00;
+  --color-nocturne-secondary-container: #af8d11;
+  --color-nocturne-on-secondary-container: #342800;
+
+  --color-nocturne-tertiary: #d2bcff;
+  --color-nocturne-on-tertiary: #3d008f;
+  --color-nocturne-tertiary-container: #a277ff;
+  --color-nocturne-on-tertiary-container: #35007e;
+
+  --color-nocturne-surface: #121317;
+  --color-nocturne-on-surface: #e3e2e8;
+  --color-nocturne-surface-variant: #343439;
+  --color-nocturne-on-surface-variant: #e4bdc2;
+  --color-nocturne-surface-dim: #121317;
+  --color-nocturne-surface-bright: #38393e;
+  --color-nocturne-surface-container-lowest: #0d0e12;
+  --color-nocturne-surface-container-low: #1a1b20;
+  --color-nocturne-surface-container: #1f1f24;
+  --color-nocturne-surface-container-high: #292a2e;
+  --color-nocturne-surface-container-highest: #343439;
+  --color-nocturne-surface-stage: #13161c;
+  --color-nocturne-surface-elevated: #1a1e26;
+  --color-nocturne-background: #121317;
+
+  --color-nocturne-outline: #ab888c;
+  --color-nocturne-outline-variant: #5b3f43;
+  --color-nocturne-stage-border: rgba(255, 255, 255, 0.08);
+
+  --color-nocturne-error: #ffb4ab;
+  --color-nocturne-on-error: #690005;
+  --color-nocturne-error-container: #93000a;
+  --color-nocturne-on-error-container: #ffdad6;
+
+  --color-nocturne-text-primary: #ffffff;
+  --color-nocturne-text-muted: #9e9ea7;
+  /* Bare "gold" alias for nocturne-secondary (#e9c349) — About/Contact's
+     `text-nocturne-gold` usages predate this token existing, so it was a
+     no-op utility until now. Same value as secondary, given its own name
+     since every gold-accent usage site is semantic ("gold accent"), not a
+     literal secondary-role usage. */
+  --color-nocturne-gold: #e9c349;
+  --color-nocturne-gold-light: #f3e5ab;
+  --color-nocturne-gold-dim: #8a7322;
+  --color-nocturne-crimson-glow: rgba(233, 30, 99, 0.25);
+
+  /* Nocturne shape (DESIGN.md §14.1) — soft, not pill-shaped; "full" here
+     is 0.75rem, deliberately distinct from §9/§13's pill-shaped
+     `radius-full` (9999px). */
+  --radius-nocturne-sm: 0.125rem;
+  --radius-nocturne: 0.25rem;
+  --radius-nocturne-lg: 0.5rem;
+  --radius-nocturne-full: 0.75rem;
+
+  /* Nocturne typography — Hanken Grotesk body (loaded via `app/fonts.ts`'s
+     `hankenGrotesk` export), Playfair Display headlines (shared with
+     Danza's variable above, same physical font). */
+  --font-hanken: var(--font-hanken-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-headline-nocturne: var(--font-playfair-display), Georgia, serif;
+}
+
+/* Mobile headline sizes — DESIGN.md §9.2 responsive rules */
+@media (max-width: 767px) {
+  :root {
+    --text-home-headline-xl: 36px;
+    --text-home-headline-xl--line-height: 42px;
+    --text-home-headline-xl--letter-spacing: -0.025em;
+
+    --text-home-headline-lg: 28px;
+    --text-home-headline-lg--line-height: 34px;
+    --text-home-headline-lg--letter-spacing: -0.02em;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+  font-family: var(--font-jakarta);
+}
+
+/* Visible focus states everywhere — ARCHITECTURE.md §1 rule 9.
+   TODO.md Phase 3.1: was `var(--color-secondary)` (#0051d5, a dark blue
+   left over from the discarded M3 light palette) — 2.88:1 against
+   `surface-stage` (#0d0e12), below the 3:1 WCAG 1.4.11 needs. Every page
+   is dark now (Danza or Nocturne), so that ring was effectively invisible
+   site-wide. Plain white reads at >15:1 against both systems' near-black
+   surfaces without favoring either system's own brand gold. */
+:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* TODO.md Phase 3.1: prefers-reduced-motion was completely unhandled —
+   32 `.animate-bokeh` instances (a slow-breathing blurred-orb loop, a
+   textbook vestibular trigger) ran unconditionally on every page, plus
+   `animate-ping`/`animate-pulse` status dots and `smooth` scroll. This
+   is the standard blanket rule: near-instant durations/single iteration
+   for anyone who's asked the OS for reduced motion, rather than hand
+   auditing every animated element. `Testimonials.tsx`'s own 7s
+   auto-advance is JS-driven (not CSS animation) and is gated separately
+   via `matchMedia` in that component. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Home Testimonials carousel + Gallery lightbox transitions — DESIGN.md §21 */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-fade-in {
+  animation: fade-in 0.35s ease-out;
+}
+
+/* Bokeh glow — used across every page (Header's mobile menu, plus a
+   dampened-opacity version on most section CTAs/heroes site-wide; see
+   DESIGN.md §25/§26/§29). A slow breathing loop for the blurred
+   theme-colored orbs; each orb gets a staggered animation-delay so they
+   drift out of phase rather than pulsing in unison.
+
+   TODO.md Phase 3.2: was opacity + `transform: scale()` together.
+   Animating `scale()` on a large `blur-3xl` surface forces the browser to
+   continuously re-rasterize that blur at a changing size on every frame —
+   expensive, and multiplied across the ~30 orbs live across the site at
+   any given time. Opacity alone animates on the compositor thread (no
+   repaint), is visually very close to the original breathing effect, and
+   is close to free. */
+@keyframes bokeh-breathe {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+.animate-bokeh {
+  animation: bokeh-breathe 7s ease-in-out infinite;
+}

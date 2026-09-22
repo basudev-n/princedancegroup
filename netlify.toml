@@ -1,0 +1,15 @@
+# TODO.md Phase 0.2. The Next.js project lives in app/, not repo root
+# (ARCHITECTURE.md §3) — Netlify needs `base` set to find package.json and
+# run the build from the right directory. The Netlify Next Runtime plugin
+# is auto-detected from `next` in app/package.json; no `[[plugins]]` block
+# needed.
+[build]
+  base = "app"
+  publish = ".next"
+  command = "npm run build"
+
+# NEXT_PUBLIC_SITE_URL must be set in the Netlify UI (Site configuration →
+# Environment variables) before the first deploy — see layout.tsx,
+# sitemap.ts, and robots.ts, which all fall back to localhost:3000
+# otherwise. Not set here since the real production domain isn't known yet
+# (ARCHITECTURE.md §1 — never hardcode an unconfirmed fact).

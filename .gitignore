@@ -1,0 +1,9 @@
+# Root-level ignores. app/ has its own .gitignore for build artifacts,
+# node_modules, and env files — see app/.gitignore.
+.DS_Store
+
+# Real public figures' headshots, extracted from the client's original
+# site PDFs — staged here but never wired into the live UI (see
+# ARCHITECTURE.md §6). Kept local-only, not published to the public repo,
+# pending explicit permission to display them.
+assets/source/images/testimonials/
