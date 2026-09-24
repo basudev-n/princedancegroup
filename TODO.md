@@ -248,7 +248,17 @@ to optional because phone is primary).
       `wa.me` deep link. Verified all three WhatsApp entry points
       (floating button, mobile menu, footer) render the identical correct
       URL via a live DOM query.
-- [ ] Confirm which of the two numbers is the WhatsApp Business line. **S** 🔒 *(all three placements currently use `phones[0]`, the number `ContactSidebar.tsx`'s pre-existing wa.me link already assumed)*
+- [x] Confirm which of the two numbers is the WhatsApp Business line.
+      **DONE 2026-09-24.** Client (Murali Sahu) confirmed +91 82709 23491
+      is the dedicated WhatsApp line — and also gave a third,
+      previously-unknown number (+91 96924 53808) as the real general
+      calling/booking line, and confirmed +91 98611 80053 as the
+      founder's own direct number rather than a second interchangeable
+      public line. `content/site.ts`'s `phones` array replaced with
+      explicit `phone`/`whatsapp`/`founderPhone` fields; every `tel:` and
+      `wa.me:` link site-wide (~16 call sites) now points at the correct
+      one instead of one ambiguous shared value. See PROGRESS.md's
+      decisions log for the full file list. **S**
 
 ### 1.2 Social icons — Footer + hamburger menu ← *explicitly requested*
 
@@ -1491,7 +1501,7 @@ single request rather than piecemeal.
 | 1 | **Production domain** | `NEXT_PUBLIC_SITE_URL`, sitemap, robots, canonicals, OG (0.2, 2.1) |
 | 2 | **Formspree account + form ID**; expected monthly volume | All lead capture (0.1) |
 | 3 | **Social handles/URLs** (FB, Instagram, YouTube, X) | Social icons (1.2), `sameAs` schema (5) |
-| 4 | **Which phone is the WhatsApp Business line** | WhatsApp integration (1.1) |
+| ~~4~~ | ~~Which phone is the WhatsApp Business line~~ — confirmed 2026-09-24 | resolved |
 | 5 | **Which act won IGT Season 1** — Krishna Act, Dashavatar, or both | Fixing the contradiction (0.3) |
 | 6 | **Real troupe-size options** (or confirm none should be offered) | Form dropdowns (0.3) |
 | 7 | **Service area** — local / national / international | "Worldwide touring" claims (0.3), `areaServed` |

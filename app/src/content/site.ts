@@ -14,8 +14,19 @@ export const site = {
     state: "Odisha",
     country: "India",
   },
+  // 2026-09-24: client (Murali Sahu) confirmed 3 distinct real numbers with
+  // 3 distinct roles — previously the site had 2 interchangeable numbers in
+  // one `phones` array, used indiscriminately for both tel: and wa.me:
+  // links everywhere (flagged as an open question in TODO.md's Client
+  // Input Register #4 — "which phone is the WhatsApp Business line").
+  // `founderPhone` is Krishna Mohan Reddy's own direct line — a confirmed
+  // fact, but not currently surfaced as a public CTA anywhere on the site
+  // (every "Call Us"/WhatsApp button uses `phone`/`whatsapp` below); add a
+  // display site if the client asks for it specifically.
   contact: {
-    phones: ["+91 98611 80053", "+91 82709 23491"],
+    phone: "+91 96924 53808",
+    whatsapp: "+91 82709 23491",
+    founderPhone: "+91 98611 80053",
     email: "princedancegroup09@gmail.com",
     address: {
       line1: "Art Performing Building",

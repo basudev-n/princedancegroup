@@ -154,7 +154,7 @@ export function Header() {
             </span>
           </div>
           <a
-            href={`tel:${site.contact.phones[0].replace(/\s+/g, "")}`}
+            href={`tel:${site.contact.phone.replace(/\s+/g, "")}`}
             aria-label={`Call ${site.name}`}
             className="hidden lg:flex h-10 w-10 items-center justify-center rounded-full border border-surface-border text-on-surface-danza-muted hover:text-danza-gold hover:border-danza-gold/40 transition-colors shrink-0"
           >
@@ -282,7 +282,7 @@ export function Header() {
             style={{ transitionDelay: open ? `${(site.navigation.length + 1) * 50}ms` : "0ms" }}
           >
             <a
-              href={`tel:${site.contact.phones[0].replace(/\s+/g, "")}`}
+              href={`tel:${site.contact.phone.replace(/\s+/g, "")}`}
               onClick={() => setOpen(false)}
               className="flex items-center justify-center gap-2 px-4 py-4 rounded-2xl border border-surface-border text-on-surface-danza font-sans text-sm font-bold uppercase tracking-wider hover:border-danza-gold/40 hover:text-danza-gold transition-colors"
             >
@@ -290,7 +290,7 @@ export function Header() {
               Call Us
             </a>
             <a
-              href={`https://wa.me/${site.contact.phones[0].replace(/\D/g, "")}?text=${encodeURIComponent("Hi, I'd like to enquire about booking Prince Dance Group for an event.")}`}
+              href={`https://wa.me/${site.contact.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent("Hi, I'd like to enquire about booking Prince Dance Group for an event.")}`}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}

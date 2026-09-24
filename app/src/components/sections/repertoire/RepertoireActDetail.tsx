@@ -83,7 +83,7 @@ export function RepertoireActDetail({ act }: { act: RepertoireAct }) {
                 </span>
               </Link>
               <a
-                href={`tel:${site.contact.phones[0].replace(/\s+/g, "")}`}
+                href={`tel:${site.contact.phone.replace(/\s+/g, "")}`}
                 className="group font-hanken h-12 px-8 rounded-nocturne-full bg-nocturne-surface-container-lowest text-nocturne-text-primary text-sm font-semibold inline-flex items-center justify-center gap-2 border border-nocturne-stage-border hover:bg-nocturne-surface-container-high transition-all active:scale-95 w-fit"
               >
                 Call Us Now

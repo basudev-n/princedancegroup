@@ -84,7 +84,7 @@ export function WeddingEnquiryForm() {
             Direct Coordinator
           </span>
           <p className="font-hanken text-sm font-semibold text-nocturne-text-primary mb-4">
-            {site.contact.phones.join(" • ")}
+            {site.contact.phone} &bull; {site.contact.whatsapp} (WhatsApp)
           </p>
           <p className="font-hanken text-xs text-nocturne-text-muted">
             Season dates are allocated per booking. Reach out early to check
@@ -243,14 +243,14 @@ export function WeddingEnquiryForm() {
               <p className="font-hanken text-xs text-nocturne-text-muted -mt-2">
                 Or reach us directly —{" "}
                 <a
-                  href={`tel:${site.contact.phones[0].replace(/\s+/g, "")}`}
+                  href={`tel:${site.contact.phone.replace(/\s+/g, "")}`}
                   className="text-nocturne-gold hover:underline"
                 >
                   call us
                 </a>{" "}
                 or{" "}
                 <a
-                  href={`https://wa.me/${site.contact.phones[0].replace(/\D/g, "")}`}
+                  href={`https://wa.me/${site.contact.whatsapp.replace(/\D/g, "")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-nocturne-gold hover:underline"

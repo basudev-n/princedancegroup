@@ -58,7 +58,7 @@ export function ServicesCTA({
   ctaLabel?: string;
   icon?: string;
 }) {
-  const phone = site.contact.phones[0];
+  const phone = site.contact.phone;
 
   return (
     <section className="relative w-full bg-nocturne-surface-container-lowest pb-16 overflow-hidden">

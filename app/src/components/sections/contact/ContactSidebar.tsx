@@ -44,7 +44,7 @@ const mapsHref = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
 const mapEmbedQuery = encodeURIComponent(
   `${site.contact.address.line2.split(",").pop()?.trim()}, ${site.contact.address.pin}`,
 );
-const whatsappHref = `https://wa.me/${site.contact.phones[0].replace(/\D/g, "")}`;
+const whatsappHref = `https://wa.me/${site.contact.whatsapp.replace(/\D/g, "")}`;
 
 const assurances = [
   "Choreography led by founder Krishna Mohan Reddy",
@@ -94,17 +94,25 @@ export function ContactSidebar() {
             </span>
             Direct Artist Management Desk
           </span>
-          <p className="flex flex-wrap gap-x-2 gap-y-1 font-hanken text-sm font-semibold text-nocturne-text-primary">
-            {site.contact.phones.map((phone, i) => (
-              <a
-                key={phone}
-                href={`tel:${phone.replace(/\s+/g, "")}`}
-                className="hover:text-nocturne-gold transition-colors"
-              >
-                {phone}
-                {i < site.contact.phones.length - 1 ? " •" : ""}
-              </a>
-            ))}
+          {/* 2026-09-24: client confirmed these are 2 distinct real
+              numbers (a general booking line and a dedicated WhatsApp
+              line), not 2 interchangeable ones — labeled accordingly
+              instead of a flat list. */}
+          <p className="flex flex-wrap gap-x-3 gap-y-1 font-hanken text-sm font-semibold text-nocturne-text-primary">
+            <a
+              href={`tel:${site.contact.phone.replace(/\s+/g, "")}`}
+              className="hover:text-nocturne-gold transition-colors"
+            >
+              {site.contact.phone}
+            </a>
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-nocturne-gold transition-colors"
+            >
+              {site.contact.whatsapp} (WhatsApp)
+            </a>
           </p>
         </div>
 

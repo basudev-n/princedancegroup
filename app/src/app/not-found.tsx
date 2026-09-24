@@ -86,11 +86,11 @@ export default function NotFound() {
         </div>
 
         <a
-          href={`tel:${site.contact.phones[0].replace(/\s+/g, "")}`}
+          href={`tel:${site.contact.phone.replace(/\s+/g, "")}`}
           className="inline-flex items-center gap-2 font-sans text-sm font-semibold text-danza-gold hover:underline"
         >
           <span className="material-symbols-outlined text-[18px]" aria-hidden="true">call</span>
-          Or call us directly at {site.contact.phones[0]}
+          Or call us directly at {site.contact.phone}
         </a>
       </div>
     </section>

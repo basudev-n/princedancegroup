@@ -7,3 +7,4 @@
 # ARCHITECTURE.md §6). Kept local-only, not published to the public repo,
 # pending explicit permission to display them.
 assets/source/images/testimonials/
+.vercel

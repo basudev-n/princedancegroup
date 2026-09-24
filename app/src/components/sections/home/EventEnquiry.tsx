@@ -69,7 +69,7 @@ export function EventEnquiry() {
     }
   }
 
-  const phone = site.contact.phones[0];
+  const phone = site.contact.phone;
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -296,7 +296,7 @@ export function EventEnquiry() {
               </a>{" "}
               or{" "}
               <a
-                href={`https://wa.me/${phone.replace(/\D/g, "")}`}
+                href={`https://wa.me/${site.contact.whatsapp.replace(/\D/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-danza-gold hover:underline"

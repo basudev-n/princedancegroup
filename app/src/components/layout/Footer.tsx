@@ -146,18 +146,18 @@ export function Footer() {
             <ul className="flex flex-col gap-2.5 font-sans text-xs text-on-surface-danza-muted">
               <li>
                 <a
-                  href={`tel:${site.contact.phones[0].replace(/\s+/g, "")}`}
+                  href={`tel:${site.contact.phone.replace(/\s+/g, "")}`}
                   className="flex items-center gap-1.5 hover:text-danza-gold transition-colors"
                 >
                   <span className="material-symbols-outlined text-[14px] text-danza-gold shrink-0" aria-hidden="true">
                     call
                   </span>
-                  {site.contact.phones[0]}
+                  {site.contact.phone}
                 </a>
               </li>
               <li>
                 <a
-                  href={`https://wa.me/${site.contact.phones[0].replace(/\D/g, "")}?text=${encodeURIComponent("Hi, I'd like to enquire about booking Prince Dance Group for an event.")}`}
+                  href={`https://wa.me/${site.contact.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent("Hi, I'd like to enquire about booking Prince Dance Group for an event.")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-1.5 hover:text-danza-gold transition-colors"

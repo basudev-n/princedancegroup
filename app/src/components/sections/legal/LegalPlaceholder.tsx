@@ -12,7 +12,7 @@ export function LegalPlaceholder({
   label: string;
   description: string;
 }) {
-  const phone = site.contact.phones[0];
+  const phone = site.contact.phone;
 
   return (
     <section className="w-full bg-surface-stage min-h-[70vh] flex items-center py-24">

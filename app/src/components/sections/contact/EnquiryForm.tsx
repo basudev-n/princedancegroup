@@ -253,14 +253,14 @@ export function EnquiryForm() {
           <p className="font-hanken text-xs text-nocturne-text-muted -mt-2">
             Or reach us directly —{" "}
             <a
-              href={`tel:${site.contact.phones[0].replace(/\s+/g, "")}`}
+              href={`tel:${site.contact.phone.replace(/\s+/g, "")}`}
               className="text-nocturne-gold hover:underline"
             >
               call us
             </a>{" "}
             or{" "}
             <a
-              href={`https://wa.me/${site.contact.phones[0].replace(/\D/g, "")}`}
+              href={`https://wa.me/${site.contact.whatsapp.replace(/\D/g, "")}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-nocturne-gold hover:underline"

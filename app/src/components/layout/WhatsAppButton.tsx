@@ -8,10 +8,9 @@ import { WhatsAppIcon } from "@/components/ui/icons/BrandIcons";
 // and demotes email to optional for exactly that reason. This floating
 // button makes it reachable from every page, including mid-scroll.
 //
-// Uses `phones[0]` — TODO.md flags confirming which of the two numbers is
-// the actual WhatsApp Business line as a small open client-input item;
-// `phones[0]` is the number every other WhatsApp-adjacent UI on the site
-// (ContactSidebar's own wa.me link) already assumes.
+// 2026-09-24: client confirmed the dedicated WhatsApp Business number —
+// `site.contact.whatsapp` — resolving the open client-input item TODO.md
+// used to flag here.
 //
 // z-30: above ordinary page content, but below the mobile nav panel
 // (z-40) and BookingModal (z-[60]) — both of those already paint an
@@ -21,7 +20,7 @@ const WHATSAPP_MESSAGE =
   "Hi, I'd like to enquire about booking Prince Dance Group for an event.";
 
 export function WhatsAppButton() {
-  const phone = site.contact.phones[0].replace(/\D/g, "");
+  const phone = site.contact.whatsapp.replace(/\D/g, "");
   const href = `https://wa.me/${phone}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
   return (

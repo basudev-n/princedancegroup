@@ -8,6 +8,32 @@ the user) to see what's real vs. planned.
 
 ## Decisions log
 
+- **2026-09-24 — Real contact numbers confirmed, resolving an open Client
+  Input Register item.** Client (Murali Sahu) provided 3 distinct real
+  phone numbers with 3 distinct roles — a dedicated WhatsApp Business
+  line (+91 82709 23491), a general calling/booking line (+91 96924
+  53808, previously unconfirmed/unused), and the founder's own direct
+  line (+91 98611 80053). Previously the whole site had only 2
+  interchangeable numbers in one `site.contact.phones` array, used for
+  both `tel:` and `wa.me:` links indiscriminately — this is exactly the
+  ambiguity `TODO.md`'s Client Input Register #4 ("which phone is the
+  WhatsApp Business line") flagged as unresolved. Restructured
+  `content/site.ts` to explicit `phone`/`whatsapp`/`founderPhone` fields
+  and fixed all ~16 call sites site-wide (Header, Footer, WhatsAppButton,
+  BookingModal, every enquiry form's fallback contact line,
+  ContactSidebar, error/not-found pages, PerformingGroup JSON-LD) so
+  `tel:` links use the general number and `wa.me:` links use the WhatsApp
+  number specifically, instead of one ambiguous value doing both jobs.
+  `founderPhone` is stored as a confirmed fact but not surfaced as a
+  public CTA anywhere — no natural display site existed for it, and
+  adding one wasn't asked for. `npm run build` + `npm run lint` clean
+  (a stale `.phones.join()` call in `WeddingEnquiryForm.tsx` caught by
+  `tsc` during the build, not just grep). Verified live: read the actual
+  `tel:`/`wa.me:` `href` attributes via DOM query and confirmed they
+  resolve to the correct new numbers, and confirmed `/contact`'s sidebar
+  now shows both numbers with clear "Call" vs "(WhatsApp)" labels instead
+  of an unlabeled list.
+
 - **2026-09-22 — Glassmorphism design pattern established.** Client asked
   for a real glass treatment; a first attempt on `services/ServicesCTA.tsx`
   tinted the whole card in the brand pink and read as "off compared to the
@@ -247,7 +273,9 @@ the user) to see what's real vs. planned.
 | Claim to fame | Winner, *India's Got Talent* Season 1 ("Krishna Act") | old website.pdf p.1 |
 | Notable appearances | IPL Chennai inauguration; *Kaun Banega Crorepati* (Sony TV); opening act, *IGT* Season 4; "Who is the Greatest Indian" (History Channel); NDTV-Toyota Greenathon (NDTV 24×7) | old website.pdf p.1 |
 | Address | Art Performing Building, In front of Pantho Niwas, Gopalpur, Pin – 761002 | both PDFs, footer |
-| Phone | +91 98611 80053 / +91 82709 23491 | both PDFs |
+| Phone (general/booking) | +91 96924 53808 | client (Murali Sahu), 2026-09-24 |
+| Phone (WhatsApp, dedicated) | +91 82709 23491 | client (Murali Sahu), 2026-09-24 |
+| Phone (Krishna Mohan Reddy, Founder & Choreographer, direct) | +91 98611 80053 | client (Murali Sahu), 2026-09-24 — confirmed fact, not currently shown as a public CTA anywhere on the site |
 | Email | princedancegroup09@gmail.com | both PDFs |
 | Services (9) | Corporate Events, Wedding Events, TV Award Show, Musical Acts, Religious Events, School/College Function, Mahotsavs, Music Video/Movies, Promotion Shoots | Services PDF |
 | Testimonials | Naveen Patnaik, V.K. Pandian (former IAS, Ganjam), Shah Rukh Khan, Sonali Bendre, Kirron Kher, Shekhar Kapur, Dharmendra | old website.pdf p.4 |

@@ -212,10 +212,10 @@ export function BookingModal({
           <p className="text-center font-sans text-xs text-on-surface-danza-muted">
             Or call us now at{" "}
             <a
-              href={`tel:${site.contact.phones[0].replace(/\s+/g, "")}`}
+              href={`tel:${site.contact.phone.replace(/\s+/g, "")}`}
               className="text-danza-gold hover:underline"
             >
-              {site.contact.phones[0]}
+              {site.contact.phone}
             </a>
           </p>
 
@@ -250,7 +250,7 @@ export function BookingModal({
             <p className="text-center font-sans text-xs text-on-surface-danza-muted">
               Or{" "}
               <a
-                href={`https://wa.me/${site.contact.phones[0].replace(/\D/g, "")}`}
+                href={`https://wa.me/${site.contact.whatsapp.replace(/\D/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-danza-gold hover:underline"
