@@ -199,6 +199,11 @@ to redesign every remaining page this way, one at a time. Full
 plan/rationale: `DESIGN.md` §22. What to know before touching Contact
 again:
 
+- **Layout (2026-09-25):** `BookingSection` = form beside `ContactDetails`
+  (equal height on desktop), then a full-width `ContactExtras` band (photo |
+  commitments | map). The old single tall sidebar is gone — don't
+  reassemble it; it left ~800px empty under the form and buried the form on
+  phones. See `PROGRESS.md`'s 2026-09-25 Contact entry.
 - `EnquiryForm.tsx` now matches Home's `EventEnquiry.tsx` pattern: 4
   always-visible fields (Name*, Phone*, Email-optional, Event Type) + a
   disclosure toggle for the rest (Role, Event Date, Event City, Troupe

@@ -8,6 +8,24 @@ the user) to see what's real vs. planned.
 
 ## Decisions log
 
+- **2026-09-25 — Contact page layout fixed (client: "layout is off,
+  especially on desktop").** Measured at desktop width: a single tall left
+  column (photo → contact card → map → commitments, **1280px**) beside a
+  **481px** form, leaving ~800px of empty space under the form; on phones
+  the whole column sat above the form, burying the booking CTA ~1300px
+  down; and the two phone numbers were crammed onto one wrapped line.
+  Restructured `contact/BookingSection.tsx` + `ContactSidebar.tsx` (now
+  exports `ContactDetails` and `ContactExtras`): row 1 is the enquiry form
+  beside the contact details, stretched to the **same height (656px)**;
+  row 2 is a full-width band of three equal 304px cards (featured photo |
+  commitments | map). The form is first in the DOM, so it now starts ~758px
+  down on a phone. Numbers are labelled, 44px tap rows; a "Prefer to talk?
+  Call / WhatsApp" strip is pinned to the bottom of the form card (fills the
+  stretch usefully); the email link is a 44px target. The section is ~300px
+  shorter overall. Verified at 1310px (columns equal), 820px (clean single
+  column, still fine with the extra fields expanded) and 375px (no sideways
+  scroll, all links ≥44px). Lint/build clean.
+
 - **2026-09-25 — CI/CD verified live.** The three GitHub secrets
   (`VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`) are in place — the
   two IDs added with `gh`, the token added by the project owner directly

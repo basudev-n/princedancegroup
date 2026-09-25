@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ContactSidebar } from "@/components/sections/contact/ContactSidebar";
+import { ContactDetails, ContactExtras } from "@/components/sections/contact/ContactSidebar";
 import { EnquiryForm } from "@/components/sections/contact/EnquiryForm";
 
 // The reference screen lays out the featured act + contact card +
@@ -37,9 +37,15 @@ export function BookingSection() {
           style={{ animationDelay: "2.5s" }}
         />
       </div>
-      <div className="relative max-w-[1200px] mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.8fr)] gap-8 items-start">
-        <ContactSidebar />
-        <EnquiryForm />
+      {/* 2026-09-25 layout fix: form first in the DOM (leads on phones),
+          contact details beside it at a matching height on desktop, then a
+          full-width photo | commitments | map band. See ContactSidebar.tsx. */}
+      <div className="relative max-w-[1200px] mx-auto px-6 md:px-10 flex flex-col gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)] gap-6 items-stretch">
+          <EnquiryForm />
+          <ContactDetails />
+        </div>
+        <ContactExtras />
       </div>
     </section>
   );

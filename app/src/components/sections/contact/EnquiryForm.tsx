@@ -90,7 +90,7 @@ export function EnquiryForm() {
   }
 
   return (
-    <div className="rounded-nocturne-lg bg-nocturne-surface-container border border-nocturne-stage-border p-6 md:p-8">
+    <div className="h-full flex flex-col rounded-nocturne-lg bg-nocturne-surface-container border border-nocturne-stage-border p-6 md:p-8">
       <span className="font-hanken text-xs font-semibold uppercase tracking-widest text-nocturne-gold">
         Start Your Booking
       </span>
@@ -105,7 +105,7 @@ export function EnquiryForm() {
         or we&apos;ll follow up to fill in the rest.
       </p>
 
-      <form onSubmit={handleSubmit} aria-busy={status === "sending"} className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit} aria-busy={status === "sending"} className="flex flex-1 flex-col gap-4">
         <input
           type="text"
           name="_gotcha"
@@ -271,6 +271,34 @@ export function EnquiryForm() {
           </p>
         )}
       </form>
+
+      {/* Card footer, pinned to the bottom: the card stretches to match the
+          contact details beside it (Contact layout fix, 2026-09-25), so a
+          direct-contact alternative fills that space usefully instead of
+          leaving it empty. Real numbers from content/site.ts. */}
+      <div className="mt-auto pt-6">
+        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-t border-nocturne-stage-border pt-5 font-hanken text-sm text-nocturne-text-muted">
+          <span>Prefer to talk?</span>
+          <span className="flex flex-wrap items-center gap-x-4">
+            <a
+              href={`tel:${site.contact.phone.replace(/\s+/g, "")}`}
+              className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-nocturne-gold hover:text-nocturne-primary transition-colors"
+            >
+              <span className="material-symbols-outlined text-[16px]" aria-hidden="true">call</span>
+              Call {site.contact.phone}
+            </a>
+            <a
+              href={`https://wa.me/${site.contact.whatsapp.replace(/\D/g, "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-nocturne-gold hover:text-nocturne-primary transition-colors"
+            >
+              <span className="material-symbols-outlined text-[16px]" aria-hidden="true">phone_in_talk</span>
+              WhatsApp
+            </a>
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
