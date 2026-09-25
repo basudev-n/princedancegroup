@@ -8,6 +8,29 @@ the user) to see what's real vs. planned.
 
 ## Decisions log
 
+- **2026-09-25 — Footer redesigned, mobile-first (client request).** Problems
+  found on phones: five sections in one very long column with Contact
+  buried below the nav; every link 12px text with ~8px gaps (far under a
+  tappable size); the WhatsApp number never shown (just the word); the
+  Repertoire items looked like links but weren't; Home missing from the nav
+  list. On desktop the Contact column was only 2/12 wide so the address and
+  email wrapped badly. Now: on phones, Brand → **Contact** (two full-width
+  Call / WhatsApp buttons that each show their real number — `+91 96924
+  53808` and `+91 82709 23491` — then email and address) → Navigate and
+  Repertoire side by side → legal links; every row ≥44px tall, no
+  horizontal scroll. On desktop, four columns: Brand 4 | Navigate 2 |
+  Repertoire 3 | Contact 3 (buttons stack vertically, 291px wide, numbers
+  fit). Navigate now includes Home; Repertoire entries link to their
+  `/repertoire/[slug]` pages, showing the name before the colon (derived,
+  not new copy). **Removed** the "Newsletter — signup coming soon" column (a
+  non-feature taking a column and phone height) — restore it when signup
+  exists. Two bugs caught in verification and fixed: the numbers overflowed
+  half-width buttons on a 375px phone (buttons now stack below 480px), and
+  the floating WhatsApp button covered the last links (extra bottom padding
+  on phones, right padding on the desktop bottom bar). Lint/build clean;
+  verified at 375px and 1300px via DOM (all links ≥44px, numbers inside
+  buttons, `tel:`/`wa.me:` hrefs correct) and screenshots.
+
 - **2026-09-25 — Client photos placed throughout the site, per the
   client's "Strategic Web Placement" column.** Mapped each photo's
   suggested placement onto the real sections, without repeating a photo

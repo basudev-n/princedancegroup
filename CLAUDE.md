@@ -185,8 +185,11 @@ not a single page — live on every route, not just Home.
   (phone/email/address — previously nowhere in the footer except a real
   email buried in a tiny footnote), replaced the newsletter's disabled
   input+button (looked like a broken form) with an honest single
-  "coming soon" note, and added the bokeh glow. Column grid is now 5-wide
-  (Brand/Navigate/Repertoire/Contact/Newsletter).
+  "coming soon" note, and added the bokeh glow. **Superseded 2026-09-25:**
+  the footer was redesigned mobile-first (Contact right after Brand on
+  phones with big Call/WhatsApp buttons showing both numbers, 4 columns on
+  desktop, Newsletter column removed) — see `PROGRESS.md`'s 2026-09-25
+  footer entry before touching `Footer.tsx`.
 
 ## Contact page UI/UX redesign (2026-09-20, current for `/contact`)
 

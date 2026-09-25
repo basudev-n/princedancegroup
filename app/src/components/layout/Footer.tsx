@@ -38,13 +38,41 @@ import { WhatsAppIcon } from "@/components/ui/icons/BrandIcons";
 // Acts" — didn't correspond to any real act named anywhere else on the
 // site. Now reads content/home.ts's canonical `repertoire` (all 5 real
 // acts), so this list can never drift from what /gallery actually shows.
+// 2026-09-25 (client request — "improve the footer for desktop and mostly
+// mobile: proper phone numbers, navigation, layout"). What was wrong, mostly
+// on phones: five sections stacked in one very long column with Contact
+// buried below Navigate/Repertoire; every link was 12px text with ~8px
+// gaps (far under a usable tap size); the WhatsApp number was never shown
+// (just the word "WhatsApp"); the Repertoire items looked like links (hover
+// colour) but weren't; Home was missing from the nav list. On desktop the
+// Contact column was only 2/12 wide, so the address and email wrapped
+// awkwardly.
+//
+// Now: on mobile, order is Brand → Contact (two big Call / WhatsApp buttons
+// that each show their real number, then email + address) → Navigate and
+// Repertoire side-by-side, all rows ≥44px tall; on desktop, Brand 4 |
+// Navigate 2 | Repertoire 3 | Contact 3. Repertoire entries link to their
+// own /repertoire/[slug] pages and show the name before the colon
+// (derived, not new copy). The two phone buttons stack full-width below
+// 480px — side by side, a full number no longer fit inside a 375px-wide
+// phone's half-width button and overflowed its border. Extra bottom
+// padding on phones keeps the floating WhatsApp button off the last links. The "Newsletter — signup coming soon" column was
+// dropped: a non-feature taking a whole column (and vertical space on
+// phones) — restore it when signup actually exists.
+const linkRow =
+  "flex min-h-11 items-center gap-2 py-1 font-sans text-sm text-on-surface-danza-muted hover:text-danza-gold transition-colors";
+const headingClass =
+  "font-sans text-xs font-bold text-danza-gold tracking-[0.2em] uppercase";
+const shortTitle = (title: string) => title.split(":")[0];
+
 export function Footer() {
   const mapsQuery = encodeURIComponent(
     `${site.contact.address.line1}, ${site.contact.address.line2}, ${site.contact.address.state} ${site.contact.address.pin}`,
   );
+  const waHref = `https://wa.me/${site.contact.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent("Hi, I'd like to enquire about booking Prince Dance Group for an event.")}`;
 
   return (
-    <footer className="relative w-full bg-[#08090b] text-on-surface-danza border-t border-surface-border pt-16 pb-10 overflow-hidden">
+    <footer className="relative w-full bg-[#08090b] text-on-surface-danza border-t border-surface-border pt-14 pb-24 lg:pb-8 overflow-hidden">
       <div className="absolute inset-0 pointer-events-none opacity-30">
         <div className="absolute -top-24 left-1/3 w-96 h-96 rounded-full bg-danza-crimson blur-3xl animate-bokeh" />
         <div
@@ -53,21 +81,13 @@ export function Footer() {
         />
       </div>
 
-      <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 pb-12">
+      <div className="relative max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 lg:grid-cols-12 gap-x-6 gap-y-10 pb-10">
           {/* Brand */}
-          <div className="lg:col-span-4 flex flex-col gap-4">
+          <div className="order-1 col-span-2 lg:col-span-4 flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              {/* TODO.md Phase 3.2: see layout/Header.tsx for the full
-                  rationale — same 160×160 WebP (~21KB vs. the original
-                  400×400 PNG's ~197KB) at this 40px display size.
-                  TODO.md Phase 4.3: alt="" — unlike the header logo (which
-                  doubles as the accessible name for the "go to homepage"
-                  link it sits inside), this one is purely decorative: it's
-                  not a link, and the brand name is already the very next
-                  visible/DOM element. It was previously duplicating the
-                  header's own "{site.name} crest" alt text with no
-                  functional purpose on the same page. */}
+              {/* alt="": decorative — not a link, and the brand name is the
+                  very next element (TODO.md Phase 4.3). */}
               <Image
                 src="/images/brand/logo-main.webp"
                 alt=""
@@ -82,12 +102,12 @@ export function Footer() {
                 {site.name}
               </span>
             </div>
-            <p className="font-sans text-xs text-on-surface-danza-muted leading-relaxed max-w-sm">
+            <p className="font-sans text-sm text-on-surface-danza-muted leading-relaxed max-w-sm">
               Bringing India&apos;s ancient epics to life through dance and
               storytelling on stage. Winners of India&apos;s Got Talent,
               known for unforgettable performances.
             </p>
-            <div className="flex flex-wrap items-center gap-2 pt-1">
+            <div className="flex flex-wrap items-center gap-2">
               <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-card border border-surface-border text-danza-gold">
                 <span className="material-symbols-outlined text-sm" aria-hidden="true">
                   military_tech
@@ -105,73 +125,54 @@ export function Footer() {
                 </span>
               </span>
             </div>
-            <SocialIcons className="pt-1" />
+            <SocialIcons />
           </div>
 
-          {/* Navigation */}
-          <div className="lg:col-span-2 flex flex-col gap-3">
-            <h4 className="font-sans text-xs font-bold text-danza-gold tracking-[0.2em] uppercase">
-              Navigate
-            </h4>
-            <ul className="flex flex-col gap-2 font-sans text-xs text-on-surface-danza-muted">
-              {site.navigation
-                .filter((item) => item.href !== "/")
-                .map((item) => (
-                  <li key={item.href} className="hover:text-danza-crimson transition-colors">
-                    <Link href={item.href}>{item.label}</Link>
-                  </li>
-                ))}
-            </ul>
-          </div>
+          {/* Contact — first thing after the brand on phones */}
+          <div className="order-2 lg:order-4 col-span-2 lg:col-span-3 flex flex-col gap-3">
+            <h4 className={headingClass}>Get in Touch</h4>
 
-          {/* Signature Repertoire */}
-          <div className="lg:col-span-2 flex flex-col gap-3">
-            <h4 className="font-sans text-xs font-bold text-danza-gold tracking-[0.2em] uppercase">
-              Repertoire
-            </h4>
-            <ul className="flex flex-col gap-2 font-sans text-xs text-on-surface-danza-muted">
-              {repertoire.map((piece) => (
-                <li key={piece.slug} className="hover:text-danza-crimson transition-colors">
-                  {piece.title}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact — real phone/email/address, previously missing from the footer entirely */}
-          <div className="lg:col-span-2 flex flex-col gap-3">
-            <h4 className="font-sans text-xs font-bold text-danza-gold tracking-[0.2em] uppercase">
-              Get in Touch
-            </h4>
-            <ul className="flex flex-col gap-2.5 font-sans text-xs text-on-surface-danza-muted">
-              <li>
-                <a
-                  href={`tel:${site.contact.phone.replace(/\s+/g, "")}`}
-                  className="flex items-center gap-1.5 hover:text-danza-gold transition-colors"
-                >
-                  <span className="material-symbols-outlined text-[14px] text-danza-gold shrink-0" aria-hidden="true">
-                    call
+            <div className="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-1 gap-3">
+              <a
+                href={`tel:${site.contact.phone.replace(/\s+/g, "")}`}
+                aria-label={`Call ${site.contact.phone}`}
+                className="flex min-h-14 items-center gap-3 rounded-2xl border border-danza-gold/40 bg-danza-gold/5 px-4 py-2.5 hover:bg-danza-gold/10 hover:border-danza-gold transition-colors"
+              >
+                <span className="material-symbols-outlined text-[22px] text-danza-gold shrink-0" aria-hidden="true">
+                  call
+                </span>
+                <span className="flex flex-col leading-tight">
+                  <span className="font-sans text-[10px] font-semibold uppercase tracking-wider text-on-surface-danza-muted">
+                    Call
                   </span>
-                  {site.contact.phone}
-                </a>
-              </li>
+                  <span className="font-sans text-[13px] font-semibold text-white whitespace-nowrap">
+                    {site.contact.phone}
+                  </span>
+                </span>
+              </a>
+              <a
+                href={waHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`WhatsApp ${site.contact.whatsapp}`}
+                className="flex min-h-14 items-center gap-3 rounded-2xl border border-[#25D366]/40 bg-[#25D366]/5 px-4 py-2.5 hover:bg-[#25D366]/10 hover:border-[#25D366] transition-colors"
+              >
+                <WhatsAppIcon className="h-[22px] w-[22px] text-[#25D366] shrink-0" />
+                <span className="flex flex-col leading-tight">
+                  <span className="font-sans text-[10px] font-semibold uppercase tracking-wider text-on-surface-danza-muted">
+                    WhatsApp
+                  </span>
+                  <span className="font-sans text-[13px] font-semibold text-white whitespace-nowrap">
+                    {site.contact.whatsapp}
+                  </span>
+                </span>
+              </a>
+            </div>
+
+            <ul className="flex flex-col">
               <li>
-                <a
-                  href={`https://wa.me/${site.contact.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent("Hi, I'd like to enquire about booking Prince Dance Group for an event.")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 hover:text-danza-gold transition-colors"
-                >
-                  <WhatsAppIcon className="h-[14px] w-[14px] text-danza-gold shrink-0" />
-                  WhatsApp
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${site.contact.email}`}
-                  className="flex items-center gap-1.5 hover:text-danza-gold transition-colors break-all"
-                >
-                  <span className="material-symbols-outlined text-[14px] text-danza-gold shrink-0" aria-hidden="true">
+                <a href={`mailto:${site.contact.email}`} className={`${linkRow} break-all`}>
+                  <span className="material-symbols-outlined text-[18px] text-danza-gold shrink-0" aria-hidden="true">
                     mail
                   </span>
                   {site.contact.email}
@@ -182,9 +183,9 @@ export function Footer() {
                   href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-1.5 hover:text-danza-gold transition-colors"
+                  className="flex min-h-11 items-start gap-2 py-2 font-sans text-sm leading-relaxed text-on-surface-danza-muted hover:text-danza-gold transition-colors"
                 >
-                  <span className="material-symbols-outlined text-[14px] text-danza-gold shrink-0 mt-0.5" aria-hidden="true">
+                  <span className="material-symbols-outlined text-[18px] text-danza-gold shrink-0 mt-0.5" aria-hidden="true">
                     location_on
                   </span>
                   <span>
@@ -196,47 +197,46 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter — honest single note, not a fake-interactive disabled form */}
-          <div className="lg:col-span-2 flex flex-col gap-3">
-            <h4 className="font-sans text-xs font-bold text-danza-gold tracking-[0.2em] uppercase">
-              Newsletter
-            </h4>
-            <p className="font-sans text-xs text-on-surface-danza-muted">
-              Updates on new performances and press features.
-            </p>
-            <span className="inline-flex w-fit items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-card border border-surface-border">
-              <span className="material-symbols-outlined text-[14px] text-on-surface-danza-dim" aria-hidden="true">
-                schedule
-              </span>
-              <span className="font-sans text-[10px] italic text-on-surface-danza-dim">
-                Signup coming soon
-              </span>
-            </span>
+          {/* Navigate */}
+          <div className="order-3 lg:order-2 col-span-1 lg:col-span-2 flex flex-col gap-1">
+            <h4 className={`${headingClass} mb-2`}>Navigate</h4>
+            <ul className="flex flex-col">
+              {site.navigation.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className={linkRow}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Repertoire */}
+          <div className="order-4 lg:order-3 col-span-1 lg:col-span-3 flex flex-col gap-1">
+            <h4 className={`${headingClass} mb-2`}>Repertoire</h4>
+            <ul className="flex flex-col">
+              {repertoire.map((piece) => (
+                <li key={piece.slug}>
+                  <Link href={`/repertoire/${piece.slug}`} className={linkRow}>
+                    {shortTitle(piece.title)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div className="pt-6 border-t border-surface-border/60 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans text-xs text-on-surface-danza-dim">
-          <p>&copy; {new Date().getFullYear()} {site.name}. All rights reserved.</p>
-          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-[11px] uppercase tracking-wider">
-            {legalPages.map((page, i) => (
-              <span key={page.slug} className="flex items-center gap-3 whitespace-nowrap">
-                {i !== 0 && <span className="text-on-surface-danza-dim/50">&bull;</span>}
-                {/* TODO.md Phase 3.1: this 11px inline link's own text box is
-                    well under the 44px touch-target minimum. Expanding the
-                    visible link itself would enlarge the whole bottom bar;
-                    instead a relatively-positioned invisible ::before grows
-                    the tappable area (14px top/bottom — enough to clear 44px
-                    against this line's own height — plus a small 6px
-                    horizontal buffer that stops short of the adjacent
-                    bullet, so neighboring links' hit areas don't overlap)
-                    without moving anything visible. */}
-                <Link
-                  href={`/${page.slug}`}
-                  className="relative hover:text-danza-gold transition-colors before:absolute before:-inset-y-[14px] before:-inset-x-1.5 before:content-['']"
-                >
-                  {page.label}
-                </Link>
-              </span>
+        <div className="pt-6 lg:pr-20 border-t border-surface-border/60 flex flex-col lg:flex-row items-center justify-between gap-4 font-sans text-xs text-on-surface-danza-dim">
+          <p className="text-center">&copy; {new Date().getFullYear()} {site.name}. All rights reserved.</p>
+          <div className="flex flex-wrap items-center justify-center gap-x-1 text-[11px] uppercase tracking-wider">
+            {legalPages.map((page) => (
+              <Link
+                key={page.slug}
+                href={`/${page.slug}`}
+                className="inline-flex min-h-11 items-center px-3 hover:text-danza-gold transition-colors"
+              >
+                {page.label}
+              </Link>
             ))}
           </div>
         </div>
