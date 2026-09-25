@@ -8,6 +8,36 @@ the user) to see what's real vs. planned.
 
 ## Decisions log
 
+- **2026-09-25 — Client photo folder (Google Drive) brought onto the
+  site.** Client's "Website Photo Categorization.md" described a shared
+  Drive folder (55 files). The doc only carried links for 4 files, and the
+  Drive connector's folder search returned almost nothing, but the
+  folder's public page lists every file ID and the files are link-shared,
+  so all 54 photos were downloaded and reviewed (the 182 MB
+  `Krishna Act.mp4` was left out). Findings: the site's original 5 photos
+  come from this same folder, and 5 of its files duplicate them. The other
+  ~49 were sorted: **26 added** — performance photography only, resized to
+  ≤1800px JPEG (5.9 MB total) in `public/images/archive/`, data in the new
+  `content/archive.ts`, blur placeholders added to `lib/blurDataURLs.ts`.
+  Shipped as (1) a new **Photo Archive** section on `/gallery`
+  (`gallery/PhotoArchive.tsx`, CSS-columns masonry keeping true aspect
+  ratios, every tile opens the shared Lightbox) and (2) a **distinct hero
+  photo for each of the 9 service pages** (`serviceHeroBySlug`) — before,
+  they cycled 5 photos and two pages were pixel-identical. Alt text and
+  captions describe only what's visible; they don't name acts/events beyond
+  the client's own labels ("Krishna Act", "Patriotic Flag Act") and the
+  Ganesha mask. Service heroes are mood-matched stand-ins, not shots of
+  that service. **Held back pending the client:** photos of identifiable
+  real people (Naveen Patnaik with the founder, two individual portraits,
+  the 2009 India's Got Talent celebration crowd shots — same
+  consent caution as the testimonial headshots, and this repo is public),
+  Facebook screenshots, the Ram Sita frame (a third-party "CC" watermark),
+  and a solo-dancer shot in a different style. Also from the doc, not yet
+  used anywhere: the IGT win was **2009 with a ₹50 lakh prize**
+  (unverified against other sources). Lint and build clean; verified live
+  — all 26 images load, 3-column layout on desktop, lightbox opens (4 / 26),
+  and all 9 service pages resolve to 9 different hero images.
+
 - **2026-09-25 — New logo adopted.** Client added
   `assets/source/images/logo-main.png` (640×360 RGBA, tricolour winged
   emblem with the founder's portrait and "PDG" lettering) to replace the

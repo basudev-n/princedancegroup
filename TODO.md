@@ -1231,7 +1231,20 @@ so the 9 service pages are 9 reruns of the same 5 photos and two of them
 are pixel-identical. A planner scrolling Home → Gallery → About sees the
 same 5 frames ~20 times. **No design work fixes this.**
 
-- [ ] Request fresh performance photography — ideally per-service. **S for us / High** 🔒
+- [~] Request fresh performance photography — ideally per-service.
+      **PARTIALLY DONE 2026-09-25.** Client shared their Drive folder
+      (55 files). 26 new performance photos are now live: a browsable
+      "Photo Archive" on `/gallery` (`gallery/PhotoArchive.tsx`, masonry +
+      the shared lightbox, data in `content/archive.ts`), and each of the
+      9 service pages has its own distinct hero photo (`serviceHeroBySlug`)
+      instead of cycling the same 5 (two were pixel-identical). Still
+      open: genuinely *per-service* photography (the service heroes are
+      mood-matched stand-ins, not shots of that service), and the photos
+      held back for a client decision — see PROGRESS.md 2026-09-25. Note
+      the site's original 5 photos turned out to come from this same
+      folder, which also settles what `performance-3/4/5.jpg` show:
+      `performance-3` is a many-armed blue Krishna on a stage, `-4/-5` the
+      Ganesha-masked ensemble. **S for us / High**
 
 ### 6.2 Video 🔒 **— largest content gap**
 
@@ -1510,7 +1523,7 @@ single request rather than piecemeal.
 | 6 | **Real troupe-size options** (or confirm none should be offered) | Form dropdowns (0.3) |
 | 7 | **Service area** — local / national / international | "Worldwide touring" claims (0.3), `areaServed` |
 | 8 | **Technical rider** (one page) | `/rider-requirements`, 27 Gallery placeholders, About's claim |
-| 9 | **Fresh performance photography** | The 5-photo / 33-placement problem (6.1) |
+| 9 | **Fresh performance photography** — 26 photos received 2026-09-25 (Drive folder); still wanted: per-service shots | Genuinely per-service imagery (6.1) |
 | 10 | **Showreel / video URL** | 3 placeholders, the strongest possible asset (6.2) |
 | 11 | **Per-service detail copy** (8 services) | 8 near-duplicate thin pages (6.3) |
 | 12 | **Journal article bodies + publish dates** | 3 empty pages, `Article` schema (6.3) |

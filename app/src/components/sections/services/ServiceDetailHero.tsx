@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Service } from "@/content/services";
+import { archiveImageBySrc, serviceHeroBySlug } from "@/content/archive";
 import { galleryImages } from "@/content/gallery";
 import { PlaceholderNote } from "@/components/ui/Placeholder";
 import { serviceIcons, defaultServiceIcon } from "./serviceIcons";
@@ -26,7 +27,12 @@ export function ServiceDetailHero({
   index: number;
   total: number;
 }) {
-  const image = galleryImages[index % galleryImages.length];
+  // 2026-09-25: each service has its own hero photo (content/archive.ts's
+  // `serviceHeroBySlug`) instead of cycling the same 5 gallery images;
+  // falls back to the old cycling for any future service without a mapping.
+  const image =
+    archiveImageBySrc(serviceHeroBySlug[service.slug] ?? "") ??
+    galleryImages[index % galleryImages.length];
   const icon = serviceIcons[service.slug] ?? defaultServiceIcon;
   const pad = (n: number) => String(n).padStart(2, "0");
 
@@ -64,9 +70,9 @@ export function ServiceDetailHero({
         <div className="mt-6 rounded-nocturne-lg bg-nocturne-surface-container border border-nocturne-stage-border overflow-hidden grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[360px]">
             {/* TODO.md Phase 3.2: placeholder="blur" via the shared
-                lib/blurDataURLs.ts lookup — this image cycles through
-                galleryImages, a real public-folder path per service, not
-                a static import, so blurDataURL can't be auto-derived. */}
+                lib/blurDataURLs.ts lookup — the image is a public-folder
+                string path (content/archive.ts), not a static import, so
+                blurDataURL can't be auto-derived. */}
             <Image
               src={image.src}
               alt={image.alt}
