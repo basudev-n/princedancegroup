@@ -5,8 +5,8 @@ import type { Service } from "@/content/services";
 // TODO.md Phase 5. Real facts only, sourced straight from content/site.ts —
 // same rule as everywhere else on this site (ARCHITECTURE.md §1). Two
 // deliberate omissions, both explicitly called out in TODO.md:
-// - `sameAs` (social profile links) — omitted until real handles exist
-//   (content/site.ts's own `social` object is still all empty strings).
+// - `sameAs` now lists the real social profiles (2026-09-25); empty
+//   entries (no X account exists) are filtered out.
 // - `numberOfEmployees: 26` — NOT emitted. 26 is the original founding
 //   troupe size (a historical fact), not a confirmed current headcount,
 //   and `numberOfEmployees` asserts the latter.
@@ -42,6 +42,7 @@ export function getPerformingGroupJsonLd() {
     // isn't an organizational contact point.
     telephone: [site.contact.phone, site.contact.whatsapp],
     email: site.contact.email,
+    sameAs: Object.values(site.social).filter(Boolean),
     award: "Winner, India's Got Talent Season 1",
   };
 }

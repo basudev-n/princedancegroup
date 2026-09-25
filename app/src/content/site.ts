@@ -35,14 +35,16 @@ export const site = {
       state: "Odisha, India",
     },
   },
-  // TODO(content): confirm current handles/URLs directly with the client —
-  // the source PDF header referenced Facebook, X, YouTube and Instagram
-  // icons but the exact handles were not legible in the archive capture.
+  // 2026-09-25: real profile URLs supplied by the client (Facebook,
+  // Instagram, YouTube). Share-tracking query params from the pasted links
+  // (`mibextid`, `stkn`, `si`) are stripped — they identify one share
+  // action, not the profile. No X/Twitter account was provided; the empty
+  // string keeps that icon hidden (SocialIcons filters empty hrefs).
   social: {
-    facebook: "",
+    facebook: "https://www.facebook.com/profile.php?id=61566339056688",
     twitter: "",
-    youtube: "",
-    instagram: "",
+    youtube: "https://youtube.com/@princedancegroupofficial",
+    instagram: "https://www.instagram.com/prince_dance_group_official",
   },
   milestones: [
     {

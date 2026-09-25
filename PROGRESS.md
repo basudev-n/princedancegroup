@@ -8,6 +8,19 @@ the user) to see what's real vs. planned.
 
 ## Decisions log
 
+- **2026-09-25 — Real social links added.** Client supplied Facebook,
+  Instagram, and YouTube URLs. Entered in `content/site.ts` with the
+  share-tracking query params stripped (`mibextid`, `stkn`, `si` identify
+  one share action, not the profile). The existing `SocialIcons`
+  component (built in TODO Phase 1.2, previously rendering nothing
+  because every URL was empty) now shows in the Footer and mobile menu;
+  added a Nocturne-styled `tone` prop and a "Follow Us" row in
+  `ContactSidebar.tsx`; populated `sameAs` in the PerformingGroup
+  JSON-LD. No X/Twitter account was given, so that icon stays hidden
+  (the component filters empty URLs). Verified live via DOM: 3 links in
+  Footer, mobile menu, and Contact sidebar with correct hrefs, 44×44px
+  targets, and `sameAs` in the page's JSON-LD. Lint and build clean.
+
 - **2026-09-24 — Real contact numbers confirmed, resolving an open Client
   Input Register item.** Client (Murali Sahu) provided 3 distinct real
   phone numbers with 3 distinct roles — a dedicated WhatsApp Business

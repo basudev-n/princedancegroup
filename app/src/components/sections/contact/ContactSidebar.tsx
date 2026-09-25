@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { site } from "@/content/site";
 import { PlaceholderNote } from "@/components/ui/Placeholder";
+import { SocialIcons } from "@/components/ui/SocialIcons";
 
 // DESIGN.md §15.2 rows 3–7 / §22 — the narrow left sidebar of the unified
 // two-column booking section (matches the reference screen's exact
@@ -145,6 +146,16 @@ export function ContactSidebar() {
             <br />
             {site.contact.address.state} &mdash; {site.contact.address.pin}
           </address>
+        </div>
+
+        <div>
+          <span className="flex items-center gap-2 font-hanken text-[11px] font-semibold uppercase tracking-wider text-nocturne-text-muted mb-2">
+            <span className="material-symbols-outlined text-[16px] text-nocturne-gold" aria-hidden="true">
+              public
+            </span>
+            Follow Us
+          </span>
+          <SocialIcons tone="nocturne" />
         </div>
 
         <div className="flex flex-wrap gap-3 pt-2 border-t border-nocturne-stage-border">

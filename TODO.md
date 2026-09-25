@@ -292,9 +292,13 @@ No social icons render anywhere today.
       `site.social` values are still empty), no empty gap/artifact in
       either the Footer or mobile menu. Starts working the moment real
       handles land in `content/site.ts` — no other code change needed.
-- [ ] Get the real handles/URLs. `PROGRESS.md`'s facts table notes the
-      source PDF showed icons but the archive didn't preserve legible
-      URLs — "re-confirm exact handles before linking." **S** 🔒
+- [x] Get the real handles/URLs. **DONE 2026-09-25.** Client supplied
+      Facebook, Instagram, and YouTube profile URLs (tracking params
+      stripped). Icons now render in the Footer and mobile menu, plus a
+      new "Follow Us" row in the Contact sidebar (Nocturne-styled `tone`
+      variant of `SocialIcons`), and `sameAs` is populated in the
+      PerformingGroup JSON-LD. **No X/Twitter account was provided** —
+      that icon stays hidden until one exists. **S**
 
 ### 1.3 Click-to-call coverage
 
@@ -1500,7 +1504,7 @@ single request rather than piecemeal.
 |---|---|---|
 | 1 | **Production domain** | `NEXT_PUBLIC_SITE_URL`, sitemap, robots, canonicals, OG (0.2, 2.1) |
 | 2 | **Formspree account + form ID**; expected monthly volume | All lead capture (0.1) |
-| 3 | **Social handles/URLs** (FB, Instagram, YouTube, X) | Social icons (1.2), `sameAs` schema (5) |
+| 3 | **Social handles/URLs** — FB, Instagram, YouTube ✅ received 2026-09-25; **X/Twitter still needed (or confirm none exists)** | X icon only |
 | ~~4~~ | ~~Which phone is the WhatsApp Business line~~ — confirmed 2026-09-24 | resolved |
 | 5 | **Which act won IGT Season 1** — Krishna Act, Dashavatar, or both | Fixing the contradiction (0.3) |
 | 6 | **Real troupe-size options** (or confirm none should be offered) | Form dropdowns (0.3) |
