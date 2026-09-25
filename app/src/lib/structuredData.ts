@@ -23,7 +23,7 @@ export function getPerformingGroupJsonLd() {
     "@id": organizationId,
     name: site.name,
     url: siteUrl,
-    logo: `${siteUrl}/images/brand/logo-crest.webp`,
+    logo: `${siteUrl}/images/brand/logo-main.webp`,
     description:
       "Prince Dance Group is an Odisha, India-based performance troupe founded by Krishna Mohan Reddy, winner of India's Got Talent Season 1. Booked for corporate events, weddings, TV award shows, religious events, and more.",
     foundingLocation: {

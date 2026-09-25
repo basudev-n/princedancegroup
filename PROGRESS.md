@@ -8,6 +8,24 @@ the user) to see what's real vs. planned.
 
 ## Decisions log
 
+- **2026-09-25 — New logo adopted.** Client added
+  `assets/source/images/logo-main.png` (640×360 RGBA, tricolour winged
+  emblem with the founder's portrait and "PDG" lettering) to replace the
+  old crest. The source canvas is mostly empty margin, so it was cropped
+  to its artwork (242×226) and saved as
+  `app/public/images/brand/logo-main.webp`; it's nearly square, so
+  Header and Footer size it by height (`h-12 w-auto`). Also regenerated
+  `app/src/app/icon.png` (400px transparent) and `apple-icon.png` (180px
+  on the site's dark surface) from it, and pointed the PerformingGroup
+  JSON-LD `logo` at the new file. The old `logo-crest.png/.webp` copies in
+  `public/` were removed as unreferenced (the archival copy stays in
+  `assets/source/`). Header alt text is now "Prince Dance Group logo";
+  Footer stays `alt=""` (decorative, brand name adjacent). Lint and build
+  clean; verified live that both images load and render at 48px tall.
+  Note the artwork has fine detail (portrait, lettering) and is only 234px
+  wide natively — a higher-resolution or vector version from the client
+  would let it be shown larger and sharper.
+
 - **2026-09-25 — Real social links added.** Client supplied Facebook,
   Instagram, and YouTube URLs. Entered in `content/site.ts` with the
   share-tracking query params stripped (`mibextid`, `stkn`, `si` identify

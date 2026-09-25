@@ -88,23 +88,17 @@ export function Header() {
         >
           <div className="relative flex items-center justify-center">
             <div className="absolute -inset-1 rounded-full bg-danza-cyan/25 blur-sm group-hover:bg-danza-crimson/30 transition-all duration-500" />
-            {/* TODO.md Phase 3.2: `priority` was forcing eager, high-priority
-                fetch of a 44×44 logo on every single page, directly
-                competing with the real LCP element (the hero) for bandwidth
-                — every page pays this cost, not just Home. Not the largest
-                on-screen element anywhere on the site, so it doesn't need
-                `priority`. Also switched to a 160×160 WebP (~21KB, resized/
-                recompressed from the original 400×400 PNG at ~197KB) — still
-                comfortably covers this 44px display size at high-DPI (up to
-                ~3.6x) without shipping 99% unused pixel data. Source PNG kept
-                at `logo-crest.png` for future re-derivation (e.g. icon.png/
-                apple-icon.png were generated from it in Phase 2). */}
+            {/* No `priority`: the logo isn't the LCP element and would compete with
+                the hero for bandwidth on every page (TODO.md Phase 3.2). */}
+            {/* 2026-09-25: swapped to the client's new logo
+                (`assets/source/images/logo-main.png`, cropped to its
+                artwork → 242×226 WebP). Nearly square, so sized by height. */}
             <Image
-              src="/images/brand/logo-crest.webp"
-              alt={`${site.name} crest`}
-              width={48}
-              height={48}
-              className="relative w-11 h-11 object-contain group-hover:scale-105 transition-transform"
+              src="/images/brand/logo-main.webp"
+              alt={`${site.name} logo`}
+              width={242}
+              height={226}
+              className="relative h-12 w-auto object-contain group-hover:scale-105 transition-transform"
             />
           </div>
           <div className="hidden sm:flex flex-col leading-none">

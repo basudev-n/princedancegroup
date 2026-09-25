@@ -69,11 +69,11 @@ export function Footer() {
                   header's own "{site.name} crest" alt text with no
                   functional purpose on the same page. */}
               <Image
-                src="/images/brand/logo-crest.webp"
+                src="/images/brand/logo-main.webp"
                 alt=""
-                width={40}
-                height={40}
-                className="w-10 h-10 object-contain"
+                width={242}
+                height={226}
+                className="h-12 w-auto object-contain"
               />
               <span
                 style={{ fontFamily: "var(--font-headline-danza)" }}
