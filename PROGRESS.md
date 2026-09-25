@@ -8,6 +8,35 @@ the user) to see what's real vs. planned.
 
 ## Decisions log
 
+- **2026-09-25 — First real videos on the site (Vimeo + Google Drive).**
+  Client supplied 3 Vimeo links (their own uploads: Krishna Leela audition,
+  Flag Act semi-final, Dashavatar grand final) and pointed to the Drive
+  file "Krishna Act.mp4". Each Vimeo video allows embedding (oEmbed 200) and
+  Vimeo's own titles read "India's Got Talent Season 1 colours tv, 2009".
+  Built `content/videos.ts` (real durations from Vimeo: 21:41, 6:12,
+  12:03), `ui/VideoEmbed.tsx` (click-to-play: a local poster with a play
+  button; the Vimeo/Drive iframe only mounts on click, so the page makes
+  **zero** requests to Vimeo or Google until then — verified: 0 third-party
+  requests and 0 iframes before play, 1 iframe after), `ui/VideoModal.tsx`
+  (focus trap, Escape/click-outside close, scroll lock), a new "The
+  Performances on Film" section on `/gallery` (`#videos`, grand final
+  featured + the other three), and Home's disabled "Highlight Reel — Coming
+  Soon" tile is now a real player for the grand final. A "Watch the
+  Performances" link was added to Home's Achievements teaser. Vimeo posters
+  are saved locally (`public/images/videos/`); `play_arrow` was restored to
+  the Material Symbols subset in `layout.tsx` (removed in Phase 6 when
+  nothing used it). Vimeo embeds use `dnt=1`; Drive uses its `/preview`
+  player. **Could not verify Vimeo playback**: the test browser fails
+  Vimeo's own Cloudflare check even on vimeo.com itself (and the Chrome
+  extension wasn't connected), so only the mounting, permissions and UI were
+  verified — please press play once in a real browser. Also: the client's
+  labels and Vimeo's own titles differ ("Krishna Leela" vs "Krishna Act" for
+  the audition), the Drive file may be the same performance as that
+  audition, and the three titles imply the **grand-final act was
+  Dashavatar, not Krishna Leela/Krishna Act** — the site's copy still
+  credits Krishna Leela with the IGT win (TODO Client Register #5); confirm
+  with the client before changing any claim.
+
 - **2026-09-25 — Footer redesigned, mobile-first (client request).** Problems
   found on phones: five sections in one very long column with Contact
   buried below the nav; every link 12px text with ~8px gaps (far under a

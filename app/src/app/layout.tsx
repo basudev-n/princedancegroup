@@ -121,7 +121,7 @@ export default function RootLayout({
             (`serviceIcons.ts`) to "theaters" and reflected here. */}
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back,arrow_forward,arrow_outward,auto_stories,business_center,calendar_today,call,celebration,chat,check_circle,chevron_left,chevron_right,close,description,expand_less,expand_more,favorite,flight_takeoff,format_quote,graphic_eq,group_work,groups,handshake,image,lightbulb,location_on,mail,menu,menu_book,military_tech,movie,music_note,open_in_full,person,phone_in_talk,photo_camera,photo_library,psychology_alt,public,refresh,schedule,security,stars,straighten,temple_hindu,theater_comedy,theaters,trophy,tv,verified,verified_user,volume_up,wash,zoom_in&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back,arrow_forward,arrow_outward,auto_stories,business_center,calendar_today,call,celebration,chat,check_circle,chevron_left,chevron_right,close,description,expand_less,expand_more,favorite,flight_takeoff,format_quote,graphic_eq,group_work,groups,handshake,image,lightbulb,location_on,mail,menu,menu_book,military_tech,movie,music_note,open_in_full,person,phone_in_talk,photo_camera,photo_library,play_arrow,psychology_alt,public,refresh,schedule,security,stars,straighten,temple_hindu,theater_comedy,theaters,trophy,tv,verified,verified_user,volume_up,wash,zoom_in&display=swap"
           precedence="default"
         />
         {/* TODO.md Phase 3.1: skip-to-content link — zero `skip`/`sr-only`

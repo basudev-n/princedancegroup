@@ -4,23 +4,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { galleryImages } from "@/content/gallery";
 import { homeGalleryExtras } from "@/content/archive";
+import { videos } from "@/content/videos";
+import { VideoModal } from "@/components/ui/VideoModal";
+import { useState } from "react";
 import { useLightbox, LightboxModal } from "@/components/ui/Lightbox";
 import { glassChipDanza } from "@/lib/glass";
 
-// DESIGN.md §20/§21. Uniform grid (not the earlier asymmetric masonry) of
-// the 5 real captioned photos in content/gallery.ts, plus one honest
-// "highlight reel coming soon" video tile — no real YouTube video exists
-// yet (ARCHITECTURE.md §1: never fabricate one), so this is a disabled
-// placeholder in the same visual system as the rest of the grid rather
-// than an embedded/fake player, exactly like the inert audio control the
-// old (deleted) MediaShowcase.tsx used. These same 5 photos already
-// appear as small thumbnail crops elsewhere on Home (Hero,
-// ServiceCategories, RepertoireGrid) — reused here at real gallery scale
-// with a click-to-enlarge lightbox (prev/next, keyboard, click-outside-
-// to-close) as the "real functionality" the client asked this section to
-// have, since a plain static grid didn't feel different enough from a
-// thumbnail crop. Links out to the existing, richer /gallery page. This
-// is the #gallery scroll target for Hero's "View Gallery" CTA.
+// DESIGN.md §20/§21. Uniform grid of the real captioned photos, plus a
+// video tile that plays the client's India's Got Talent grand-final
+// performance in a modal (2026-09-25 — this tile was a disabled "Highlight
+// Reel — Coming Soon" placeholder until real videos were supplied; see
+// content/videos.ts). Every photo opens a click-to-enlarge lightbox (prev/
+// next, keyboard, click-outside-to-close). Links out to the richer /gallery
+// page. This is the #gallery scroll target for Hero's "View Gallery" CTA.
 //
 // TODO.md Phase 7 (2026-09-22): the lightbox itself (open/close/prev/next
 // state, keyboard nav, focus trap, body-scroll lock) is now the shared
@@ -31,9 +27,11 @@ import { glassChipDanza } from "@/lib/glass";
 // archive ("Live Shows" / "Performance Gallery Grid" picks), so 8 photos +
 // the video tile fill three full rows on desktop.
 const homeGalleryImages = [...galleryImages, ...homeGalleryExtras];
+const featuredVideo = videos[0];
 
 export function Gallery() {
   const { openIndex, open: openAt, close, next, prev } = useLightbox(homeGalleryImages);
+  const [videoOpen, setVideoOpen] = useState(false);
 
   return (
     <section id="gallery" className="w-full bg-surface-stage py-16">
@@ -62,36 +60,34 @@ export function Gallery() {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-          <div
-            aria-label="Highlight reel video — coming soon"
-            className="group relative rounded-2xl overflow-hidden aspect-square cursor-not-allowed"
+          {/* 2026-09-25: was a disabled "Highlight Reel — Coming Soon"
+              placeholder (no video existed). Now plays the client's
+              India's Got Talent grand-final performance in a modal. */}
+          <button
+            type="button"
+            onClick={() => setVideoOpen(true)}
+            aria-label={`Play video: ${featuredVideo.title}, ${featuredVideo.stage}`}
+            className="group relative rounded-2xl overflow-hidden aspect-square text-left"
           >
             <Image
-              src={galleryImages[0].src}
+              src={featuredVideo.poster}
               alt=""
-              aria-hidden="true"
               fill
-              className="object-cover opacity-30"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
               sizes="(min-width: 640px) 33vw, 50vw"
             />
-            <div className="absolute inset-0 bg-surface-stage/70" />
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-center px-4">
-              {/* TODO.md Phase 6.2 (2026-09-22): was `play_arrow` — a
-                  disabled tile with a play-button icon reads as a broken
-                  video player, not an honest "not available yet" state.
-                  `schedule` reads as pending/upcoming instead. */}
-              <span className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-on-surface-danza/15 border border-on-surface-danza/30">
-                <span className="material-symbols-outlined text-[26px] sm:text-[30px] text-on-surface-danza" aria-hidden="true">
-                  schedule
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+            <span className="absolute inset-0 flex items-center justify-center">
+              <span className={`flex h-14 w-14 items-center justify-center rounded-full ${glassChipDanza} border-white/25 transition-transform duration-300 group-hover:scale-110`}>
+                <span className="material-symbols-outlined text-[30px] text-white" aria-hidden="true">
+                  play_arrow
                 </span>
               </span>
-              <span className="font-sans text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-on-surface-danza-muted">
-                Highlight Reel
-                <br />
-                Coming Soon
-              </span>
-            </div>
-          </div>
+            </span>
+            <span className="absolute bottom-3 left-3 right-3 font-sans text-xs font-semibold text-white">
+              Watch: {featuredVideo.title} &middot; {featuredVideo.stage}
+            </span>
+          </button>
 
           {homeGalleryImages.map((image, i) => (
             <button
@@ -129,6 +125,7 @@ export function Gallery() {
         </div>
       </div>
 
+      <VideoModal video={videoOpen ? featuredVideo : null} onClose={() => setVideoOpen(false)} />
       <LightboxModal images={homeGalleryImages} openIndex={openIndex} onClose={close} onNext={next} onPrev={prev} />
     </section>
   );

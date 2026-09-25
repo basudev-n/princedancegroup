@@ -1257,7 +1257,10 @@ gap (`home/Gallery.tsx:82-107`, `gallery/GalleryCTA.tsx:52-58`,
 persuasive asset, and the IGT win — the whole pitch — has no footage on the
 site.
 
-- [ ] Get the official channel / showreel URL. **S once supplied / High** 🔒
+- [x] Get the official channel / showreel URL. **DONE 2026-09-25.** Client
+      supplied 3 Vimeo videos + a Drive file; live on `/gallery#videos` and
+      Home's gallery tile (see PROGRESS.md). Playback still needs one
+      real-browser check. **S / High**
 - [x] Meanwhile: fix the video-placeholder affordances. **DONE
       2026-09-22.** Home's `Gallery.tsx` tile icon swapped `play_arrow` →
       `schedule` — a disabled tile with a play-button icon reads as a

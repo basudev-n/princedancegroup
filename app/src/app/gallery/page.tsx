@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { GalleryHero } from "@/components/sections/gallery/GalleryHero";
 import { RepertoireActs } from "@/components/sections/gallery/RepertoireActs";
+import { VideoShowcase } from "@/components/sections/gallery/VideoShowcase";
 import { PhotoArchive } from "@/components/sections/gallery/PhotoArchive";
 import { TechnicalRequirements } from "@/components/sections/gallery/TechnicalRequirements";
 import { GalleryCTA } from "@/components/sections/gallery/GalleryCTA";
@@ -29,6 +30,7 @@ export default function GalleryPage() {
     <div className="font-hanken bg-nocturne-surface">
       <GalleryHero />
       <RepertoireActs />
+      <VideoShowcase />
       <PhotoArchive />
       <TechnicalRequirements />
       <GalleryCTA />

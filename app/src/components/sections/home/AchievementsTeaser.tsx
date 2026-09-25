@@ -93,15 +93,26 @@ export function AchievementsTeaser() {
             ))}
           </dl>
 
-          <Link
-            href="/about#achievements"
-            className="mt-8 inline-flex items-center gap-1.5 font-sans text-sm font-semibold text-danza-gold hover:text-danza-crimson transition-colors"
-          >
-            See the Full Story
-            <span className="material-symbols-outlined text-[16px]" aria-hidden="true">
-              arrow_forward
-            </span>
-          </Link>
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2">
+            <Link
+              href="/about#achievements"
+              className="inline-flex min-h-11 items-center gap-1.5 font-sans text-sm font-semibold text-danza-gold hover:text-danza-crimson transition-colors"
+            >
+              See the Full Story
+              <span className="material-symbols-outlined text-[16px]" aria-hidden="true">
+                arrow_forward
+              </span>
+            </Link>
+            <Link
+              href="/gallery#videos"
+              className="inline-flex min-h-11 items-center gap-1.5 font-sans text-sm font-semibold text-danza-gold hover:text-danza-crimson transition-colors"
+            >
+              Watch the Performances
+              <span className="material-symbols-outlined text-[16px]" aria-hidden="true">
+                play_arrow
+              </span>
+            </Link>
+          </div>
         </div>
       </div>
     </section>
