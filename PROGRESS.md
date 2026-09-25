@@ -8,6 +8,18 @@ the user) to see what's real vs. planned.
 
 ## Decisions log
 
+- **2026-09-25 — CI/CD verified live.** The three GitHub secrets
+  (`VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`) are in place — the
+  two IDs added with `gh`, the token added by the project owner directly
+  (never handled by Claude). The re-run of the "CI / Deploy" workflow passed
+  every step (pull → build → deploy) and the live site
+  (https://princedancegroups.vercel.app) was checked against the recent
+  changes: new phone numbers, logo, social links, Achievements, videos,
+  photo archive, and the Formspree ID baked into the build. The Vercel
+  environment variables (`NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_FORMSPREE_ID`)
+  are set in the project. Recommended follow-up: rotate the Vercel token
+  (it was pasted into a chat session) with `gh secret set VERCEL_TOKEN`.
+
 - **2026-09-25 — CI/CD set up (GitHub Actions → Vercel).** A push to GitHub
   wasn't reaching the live site: GitHub showed no Vercel deployments,
   statuses or webhooks on the repo, i.e. Vercel isn't linked to it (the repo
