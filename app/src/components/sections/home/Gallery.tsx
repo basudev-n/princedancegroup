@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { galleryImages } from "@/content/gallery";
+import { homeGalleryExtras } from "@/content/archive";
 import { useLightbox, LightboxModal } from "@/components/ui/Lightbox";
 import { glassChipDanza } from "@/lib/glass";
 
@@ -26,8 +27,13 @@ import { glassChipDanza } from "@/lib/glass";
 // components/ui/Lightbox.tsx — this was the only page with real
 // click-to-enlarge behavior; see that file's header comment for the two
 // other real gaps it fixes.
+// 2026-09-25: the grid = the 5 original photos + 3 from the client's photo
+// archive ("Live Shows" / "Performance Gallery Grid" picks), so 8 photos +
+// the video tile fill three full rows on desktop.
+const homeGalleryImages = [...galleryImages, ...homeGalleryExtras];
+
 export function Gallery() {
-  const { openIndex, open: openAt, close, next, prev } = useLightbox(galleryImages);
+  const { openIndex, open: openAt, close, next, prev } = useLightbox(homeGalleryImages);
 
   return (
     <section id="gallery" className="w-full bg-surface-stage py-16">
@@ -87,7 +93,7 @@ export function Gallery() {
             </div>
           </div>
 
-          {galleryImages.map((image, i) => (
+          {homeGalleryImages.map((image, i) => (
             <button
               key={image.src}
               type="button"
@@ -123,7 +129,7 @@ export function Gallery() {
         </div>
       </div>
 
-      <LightboxModal images={galleryImages} openIndex={openIndex} onClose={close} onNext={next} onPrev={prev} />
+      <LightboxModal images={homeGalleryImages} openIndex={openIndex} onClose={close} onNext={next} onPrev={prev} />
     </section>
   );
 }

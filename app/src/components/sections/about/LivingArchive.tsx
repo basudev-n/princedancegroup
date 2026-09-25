@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { repertoire } from "@/content/home";
-import { galleryImages } from "@/content/gallery";
+import { lightboxPool } from "@/content/archive";
 import { useLightbox, LightboxModal } from "@/components/ui/Lightbox";
 import { glassChipNocturne } from "@/lib/glass";
 
@@ -110,10 +110,10 @@ function Tile({
 }
 
 const lightboxIndexFor = (imagePath: string) =>
-  galleryImages.findIndex((img) => img.src === imagePath);
+  lightboxPool.findIndex((img) => img.src === imagePath);
 
 export function LivingArchive() {
-  const { openIndex, open: openAt, close, next, prev } = useLightbox(galleryImages);
+  const { openIndex, open: openAt, close, next, prev } = useLightbox(lightboxPool);
 
   return (
     <section className="relative w-full bg-nocturne-surface py-16 overflow-hidden">
@@ -181,7 +181,7 @@ export function LivingArchive() {
         </div>
       </div>
 
-      <LightboxModal images={galleryImages} openIndex={openIndex} onClose={close} onNext={next} onPrev={prev} />
+      <LightboxModal images={lightboxPool} openIndex={openIndex} onClose={close} onNext={next} onPrev={prev} />
     </section>
   );
 }

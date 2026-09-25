@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { repertoire } from "@/content/home";
-import { galleryImages } from "@/content/gallery";
+import { lightboxPool } from "@/content/archive";
 import { useLightbox, LightboxModal } from "@/components/ui/Lightbox";
 import { glassChipNocturne } from "@/lib/glass";
 
@@ -99,14 +99,14 @@ const bentoActs = [
 // uses the shared components/ui/Lightbox.tsx (extracted from
 // home/Gallery.tsx, the site's only page with real click-to-enlarge
 // before this). The lightbox itself operates on content/gallery.ts's
-// `galleryImages` (the canonical 5-photo set with real captions); each
-// act's own `image` path is matched to its index in that array since
-// they're the same underlying files.
+// `lightboxPool` (content/archive.ts: the original 5 gallery photos plus
+// the photo archive, all with real captions); each act's own `image` path
+// is matched to its index in that array since they're the same files.
 const lightboxIndexFor = (imagePath: string) =>
-  galleryImages.findIndex((img) => img.src === imagePath);
+  lightboxPool.findIndex((img) => img.src === imagePath);
 
 export function RepertoireActs() {
-  const { openIndex, open: openAt, close, next, prev } = useLightbox(galleryImages);
+  const { openIndex, open: openAt, close, next, prev } = useLightbox(lightboxPool);
 
   return (
     <section className="w-full bg-nocturne-surface py-16">
@@ -307,7 +307,7 @@ export function RepertoireActs() {
         </div>
       </div>
 
-      <LightboxModal images={galleryImages} openIndex={openIndex} onClose={close} onNext={next} onPrev={prev} />
+      <LightboxModal images={lightboxPool} openIndex={openIndex} onClose={close} onNext={next} onPrev={prev} />
     </section>
   );
 }

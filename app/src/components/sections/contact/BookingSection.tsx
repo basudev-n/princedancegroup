@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ContactSidebar } from "@/components/sections/contact/ContactSidebar";
 import { EnquiryForm } from "@/components/sections/contact/EnquiryForm";
 
@@ -16,6 +17,19 @@ import { EnquiryForm } from "@/components/sections/contact/EnquiryForm";
 export function BookingSection() {
   return (
     <section className="relative w-full bg-nocturne-surface py-16 overflow-hidden">
+      {/* 2026-09-25 — client's "Booking Page Background" pick: a stage
+          photo kept dark and low-opacity behind the bokeh; every card on
+          top (sidebar, form) has its own solid surface, so text contrast
+          is unaffected. Decorative, so empty alt. */}
+      <Image
+        src="/images/archive/gold-dancers-blue-krishna.jpg"
+        alt=""
+        aria-hidden="true"
+        fill
+        className="object-cover opacity-[0.14]"
+        sizes="100vw"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-nocturne-surface via-nocturne-surface/60 to-nocturne-surface" />
       <div className="absolute inset-0 pointer-events-none opacity-30">
         <div className="absolute -top-10 left-1/4 w-80 h-80 rounded-full bg-nocturne-gold blur-3xl animate-bokeh" />
         <div

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { heroStats } from "@/content/home";
 
 // DESIGN.md §16.2 rows 2–3 / §24. Structural rebuild: the source screen is
@@ -36,6 +37,20 @@ export function GalleryHero() {
 
   return (
     <section className="relative w-full bg-nocturne-surface-container-lowest overflow-hidden pt-10 pb-10">
+      {/* 2026-09-25 — client's "Portfolio Hero Banner" pick: a blue-lit
+          stage photo, dark and low-opacity behind the hero's glow. The
+          stat card and headline sit on top with their own surfaces, so
+          contrast is unaffected. Decorative, so empty alt. */}
+      <Image
+        src="/images/archive/blue-lit-stage-truss.jpg"
+        alt=""
+        aria-hidden="true"
+        fill
+        priority
+        className="object-cover object-[50%_30%] opacity-[0.22]"
+        sizes="100vw"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-nocturne-surface-container-lowest/40 via-nocturne-surface-container-lowest/70 to-nocturne-surface-container-lowest" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(233,195,73,0.08),transparent_60%)]" />
       {/* Bokeh glow — no dark scrim behind this section, so keep the
           wrapping opacity dampened (site pattern: About's Hero-adjacent

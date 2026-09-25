@@ -8,6 +8,37 @@ the user) to see what's real vs. planned.
 
 ## Decisions log
 
+- **2026-09-25 — Client photos placed throughout the site, per the
+  client's "Strategic Web Placement" column.** Mapped each photo's
+  suggested placement onto the real sections, without repeating a photo
+  twice on the same page: **Home** — new `home/AchievementsTeaser.tsx`
+  ("Where It Began", the IGT trophy/celebration photos → `/about#achievements`)
+  after the founder story; service-category cards now use photos matching
+  each service's own page hero; the photo grid grew from 5 to 8 photos
+  (+3 archive picks: Live Shows / Performance Gallery Grid). **Gallery** —
+  hero background (the client's "Portfolio Hero Banner"), a "Production
+  Quality" banner in Technical Requirements (their "Production Quality
+  Showcase"). **Contact** — booking section background (their "Booking
+  Page Background"). **Repertoire** — fixed two wrong photos: Vande
+  Mataram Patriot Symphony was showing the Ganesha-masked ensemble and
+  Surya Namaskar the same piece; now the client's own Patriotic Flag Act
+  and a golden-lit formation photo, with honest alt text. The Gallery and
+  About lightboxes now search a shared `lightboxPool` (original photos +
+  archive) so the new repertoire photos open correctly. **Alt text**
+  (TODO 4.3's deferred item): `performance-3/4/5.jpg` are identified now —
+  3 is a many-armed stage tableau, 4/5 the Ganesha-masked ensemble — and
+  their generic "performers on stage in costume" alt/captions are
+  replaced. **Not used, on purpose:** the Facebook screenshots and social
+  graphic (phone-UI screenshots aren't fit for a professional site — a
+  proper Instagram/Facebook embed needs live links, not screenshots), the
+  "Ram Sita" frame (third-party watermark), and the Krishna Leela /
+  Dashavatar photos were left alone (which act is which photo is
+  unconfirmed). The About Timeline was left without photos since its
+  suggested photos are the Achievements section directly beneath it (same
+  page would repeat them). Lint and build clean; verified live — Home 21
+  images / Gallery 33 / Contact bg all load, repertoire page leads with the
+  Flag Act photo.
+
 - **2026-09-25 — Achievements section added to About (client-approved).**
   The held-back photos from the Drive folder went in at the client's
   request ("nostalgic, holds much value"): 10 photos — 7 from the 2009

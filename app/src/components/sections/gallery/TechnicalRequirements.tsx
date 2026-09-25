@@ -1,3 +1,6 @@
+import Image from "next/image";
+import { archiveImageBySrc } from "@/content/archive";
+
 // DESIGN.md §16.2 row 9 / §24. The source screen's "Stage Architecture &
 // Hospitality Rider" and its "Master Technical Document" modal give exact
 // invented figures (proscenium footage, moving-head counts, decibel
@@ -67,6 +70,23 @@ export function TechnicalRequirements() {
           management team. Every venue&apos;s details are reviewed directly
           with you once a date is being discussed.
         </p>
+
+        {/* 2026-09-25 — client's "Production Quality Showcase" pick: a close
+            look at costume and stage lighting. The caption is descriptive
+            only — no technical specification is asserted (see this file's
+            top comment on why numbers are never shown). */}
+        <figure className="relative mb-8 aspect-[21/9] overflow-hidden rounded-nocturne-lg border border-nocturne-stage-border">
+          <Image
+            src="/images/archive/pink-ganesha-mask.jpg"
+            alt={archiveImageBySrc("/images/archive/pink-ganesha-mask.jpg")?.alt ?? ""}
+            fill
+            className="object-cover object-[50%_35%]"
+            sizes="(min-width: 1200px) 1100px, 100vw"
+          />
+          <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent px-5 pb-4 pt-10 font-hanken text-xs font-semibold text-white">
+            Costume and stage lighting up close
+          </figcaption>
+        </figure>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {categories.map((c) => (

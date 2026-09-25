@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { Hero } from "@/components/sections/home/Hero";
 import { StatsRow } from "@/components/sections/home/StatsRow";
+import { AchievementsTeaser } from "@/components/sections/home/AchievementsTeaser";
 import { FounderSpotlight } from "@/components/sections/home/FounderSpotlight";
 import { ServiceCategories } from "@/components/sections/home/ServiceCategories";
 import { RepertoireGrid } from "@/components/sections/home/RepertoireGrid";
@@ -26,6 +27,7 @@ export default function HomePage() {
       <Hero />
       <StatsRow />
       <FounderSpotlight />
+      <AchievementsTeaser />
       <ServiceCategories />
       <RepertoireGrid />
       <Gallery />

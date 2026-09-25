@@ -14,6 +14,8 @@
 // Facebook screenshots, a video-frame with a third-party "CC" watermark,
 // and duplicates of photos already in `galleryImages`.
 
+import { galleryImages } from "@/content/gallery";
+
 export type ArchiveImage = {
   src: string;
   alt: string;
@@ -226,3 +228,18 @@ export const serviceHeroBySlug: Record<string, string> = {
 export function archiveImageBySrc(src: string) {
   return archiveImages.find((i) => i.src === src);
 }
+
+// Every photo a lightbox on the Gallery/About pages might need to open: the
+// 5 original gallery photos plus the archive (repertoire acts now use
+// archive photos, so a lookup limited to `galleryImages` would miss them).
+export const lightboxPool = [...galleryImages, ...archiveImages];
+
+// Home's photo grid = the 5 original photos + these 3 from the archive
+// (the client's "Live Shows" / "Performance Gallery Grid" picks).
+export const homeGalleryExtras = [
+  "/images/archive/white-arms-sunset.jpg",
+  "/images/archive/krishna-act.jpg",
+  "/images/archive/flag-bearer-tricolour-arms.jpg",
+]
+  .map(archiveImageBySrc)
+  .filter((i): i is ArchiveImage => Boolean(i));

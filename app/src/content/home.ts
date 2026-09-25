@@ -123,12 +123,12 @@ export const repertoire: RepertoireAct[] = [
       "High-energy physical theater celebrating national heritage, with daring pyramid lifts and sweeping flag performances.",
     metaDescription:
       "Vande Mataram Patriot Symphony — patriotic physical theater from Prince Dance Group, India's Got Talent Season 1 champions, Odisha.",
-    image: "/images/gallery/performance-5.jpg",
-    // TODO.md Phase 4.3: same honest-description approach as Shiva
-    // Tandava above — this photo shows an ensemble piece with an
-    // elephant-masked performer, not literal flag/anthem imagery.
+    image: "/images/archive/patriotic-flag-act.jpg",
+    // 2026-09-25: was performance-5.jpg (an elephant-masked ensemble piece
+    // — the mismatch flagged in TODO.md Phase 4.3). Now the client's own
+    // "Patriotic Flag Act" photo, which matches the description exactly.
     imageAlt:
-      "Prince Dance Group performer in an ornate elephant-masked costume backed by an ensemble in metallic body paint with arms raised, under blue and pink stage lighting",
+      "Performers in saffron, white and green body paint kneeling in a tricolour formation with a blue Ashoka Chakra wheel behind them, on a beach",
   },
   {
     slug: "surya-namaskar",
@@ -140,14 +140,14 @@ export const repertoire: RepertoireAct[] = [
       "Physical theater combining sun-salutation postures with the troupe's martial-arts-rooted ensemble choreography.",
     metaDescription:
       "Surya Namaskar: The 12 Solar Salutations — physical theater from Prince Dance Group, India's Got Talent Season 1 champions, Odisha.",
-    image: "/images/gallery/performance-4.jpg",
-    // TODO.md Phase 4.3: same honest-description approach — this photo
-    // shows the same Ganesha-masked ensemble piece as Vande Mataram
-    // above (both performance-4.jpg and performance-5.jpg are the same
-    // real performance, shot from different angles), not literal
-    // sun-salutation postures.
+    image: "/images/archive/acrobatic-pyramid.jpg",
+    // 2026-09-25: was performance-4.jpg (the same Ganesha-masked piece as
+    // Vande Mataram used to show — no sun-salutation imagery). Now a
+    // precise group-formation photo under warm golden light, matching the
+    // "Precise Group Formations" badge; not literal sun-salutation
+    // postures.
     imageAlt:
-      "Prince Dance Group ensemble in metallic body paint forming a radiating fan formation around a performer in an elephant-masked costume, under green stage lighting",
+      "Performers stacked in a tall acrobatic pyramid on a studio floor under a warm golden light",
   },
 ];
 

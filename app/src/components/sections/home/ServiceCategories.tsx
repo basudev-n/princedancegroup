@@ -2,12 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { PlaceholderNote } from "@/components/ui/Placeholder";
 import { glassChipDanza } from "@/lib/glass";
+import { archiveImageBySrc } from "@/content/archive";
 
 // DESIGN.md §13.5 row 9. The screen's 3 categories (Royal Weddings,
 // Corporate Summits, Global Tours & Festivals) map onto 3 real confirmed
 // services — Global Tours doesn't exist as a confirmed offering, so it's
 // generalized to Mahotsavs (festivals), which does. Troupe-scale/duration
 // specifics are Stitch inventions, not shown as fabricated numbers.
+// 2026-09-25: card photos now match the service hero photos on each
+// service's own page (content/archive.ts `serviceHeroBySlug`) and carry
+// real descriptive alt text — they were performance-3/4/5.jpg with the
+// generic "performers on stage in costume" alt.
 const categories = [
   {
     slug: "wedding-events",
@@ -15,7 +20,7 @@ const categories = [
     title: "Royal Weddings & Sangeet Nights",
     description:
       "Memorable bridal and groom entry dances, grand stage sets, and romantic performances drawn from the troupe's classical repertoire.",
-    image: "/images/gallery/krishna-leela-2.jpg",
+    image: "/images/archive/gold-dancers-blue-krishna.jpg",
     cta: "Enquire for Wedding Dates",
   },
   {
@@ -24,7 +29,7 @@ const categories = [
     title: "Corporate Summits & Brand Launches",
     description:
       "Turning your brand's message into a powerful stage opener — custom formations designed to make an impact.",
-    image: "/images/gallery/performance-3.jpg",
+    image: "/images/archive/white-costume-stage-pyramid.jpg",
     cta: "Request Corporate Proposal",
   },
   {
@@ -33,7 +38,7 @@ const categories = [
     title: "Festivals & International Tours",
     description:
       "Full-length productions celebrating the spirit of India, designed for arts centers, cultural summits, and major festivals.",
-    image: "/images/gallery/performance-4.jpg",
+    image: "/images/archive/tricolour-fan-formation.jpg",
     cta: "Enquire for Festival Booking",
   },
 ];
@@ -86,7 +91,7 @@ export function ServiceCategories() {
               <div className="relative aspect-[16/10] w-full">
                 <Image
                   src={cat.image}
-                  alt={cat.title}
+                  alt={archiveImageBySrc(cat.image)?.alt ?? cat.title}
                   fill
                   className="object-cover"
                   sizes="(min-width: 768px) 33vw, 100vw"

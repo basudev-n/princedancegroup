@@ -1065,8 +1065,11 @@ fact can go stale.
       an article detail page via DOM query — all distinct, all describe
       the actual photo, no heading duplication; screenshot-confirmed both
       pages render correctly. **S / Med**
-- [ ] Rename `performance-3/4/5.jpg` to describe what they show (the other
-      five filenames already do). **Deliberately not touched this
+- [~] Rename `performance-3/4/5.jpg` to describe what they show (the other
+      five filenames already do). **Alt text/captions DONE 2026-09-25**
+      (identified against the client's Drive folder — see PROGRESS.md);
+      the filenames themselves are still unchanged (cosmetic, and
+      renaming touches every reference). **Deliberately not touched this
       session** — same reasoning as above, blocked on `task_f28a1277`'s
       photo/act mismatch review resolving first (a rename needs to know
       what the photo *is*, which is literally what that task is

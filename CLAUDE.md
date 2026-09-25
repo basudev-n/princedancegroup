@@ -121,8 +121,10 @@ functionality (§21), then bokeh + two more concrete fixes (§26). Read
 those three DESIGN.md sections in order before touching Home again, or
 skim this summary:
 
-- **Section order** (§20): Hero → StatsRow → **Founder Spotlight**
+- **Section order** (§20; **AchievementsTeaser added 2026-09-25**): Hero →
+  StatsRow → **Founder Spotlight**
   (`FounderSpotlight.tsx`, replaces the deleted `MastersGrid.tsx`) →
+  **AchievementsTeaser** (IGT 2009 photos → `/about#achievements`) →
   ServiceCategories → RepertoireGrid → **Gallery** (new) →
   BookingAvailability → **Testimonials** (new) → EventEnquiry.
   `MediaShowcase.tsx` is deleted (was a permanently inert placeholder).
