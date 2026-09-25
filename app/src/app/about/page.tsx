@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { site } from "@/content/site";
 import { Hero } from "@/components/sections/about/Hero";
 import { Timeline } from "@/components/sections/about/Timeline";
+import { Achievements } from "@/components/sections/about/Achievements";
 import { Founder } from "@/components/sections/about/Founder";
 import { Pillars } from "@/components/sections/about/Pillars";
 import { LivingArchive } from "@/components/sections/about/LivingArchive";
@@ -70,6 +71,7 @@ export default function AboutPage() {
     <div className="font-hanken bg-nocturne-surface">
       <Hero />
       <Timeline />
+      <Achievements />
       <Founder />
       <Pillars />
       <LivingArchive />

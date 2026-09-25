@@ -8,6 +8,26 @@ the user) to see what's real vs. planned.
 
 ## Decisions log
 
+- **2026-09-25 — Achievements section added to About (client-approved).**
+  The held-back photos from the Drive folder went in at the client's
+  request ("nostalgic, holds much value"): 10 photos — 7 from the 2009
+  India's Got Talent celebrations, a two-person photo, and two portraits
+  (trophy shelves; seated at a desk) — as `about/Achievements.tsx`, placed
+  right after "Milestones" on `/about`. Two lead photos, a masonry of the
+  rest, faint sepia that lifts on hover for an archival feel, every tile
+  opens the shared Lightbox; data in `content/achievements.ts`, images
+  (≤1600px, 1.4 MB total) in `public/images/achievements/`. **Nobody is
+  named**: captions/alt describe only what's visible, because nothing in
+  the project confirms who is pictured. Notably, the old site's file
+  `naveen-patnaik-with-founder.png` turned out to be a stage-performance
+  photo, not a photo of that person, so it can't be used to identify the
+  two-person photo — ask the client for names before captioning. Intro
+  copy states **the 2009 win and ₹50 lakh grand prize**: client-supplied in
+  their photo doc and visible in the lead photo itself (trophy engraved
+  "India's Got Talent Winner 2009"; cheque "Rupees Fifty Lakhs Only").
+  Lint/build clean; verified live — all 10 images load, section order is
+  Milestones → Achievements → Founder, lightbox opens (6 / 10).
+
 - **2026-09-25 — Client photo folder (Google Drive) brought onto the
   site.** Client's "Website Photo Categorization.md" described a shared
   Drive folder (55 files). The doc only carried links for 4 files, and the
@@ -332,6 +352,7 @@ the user) to see what's real vs. planned.
 | Founder / choreographer | Krishna Mohan Reddy | both PDFs |
 | Origin | Berhampur, Ganjam, Odisha, India; troupe of 26 daily-wage workers | old website.pdf p.1 |
 | Claim to fame | Winner, *India's Got Talent* Season 1 ("Krishna Act") | old website.pdf p.1 |
+| IGT win year / prize | 2009; ₹50 lakh grand prize | client's photo doc, 2026-09-25; visible in the lead Achievements photo (trophy "Winner 2009", cheque "Rupees Fifty Lakhs Only") |
 | Notable appearances | IPL Chennai inauguration; *Kaun Banega Crorepati* (Sony TV); opening act, *IGT* Season 4; "Who is the Greatest Indian" (History Channel); NDTV-Toyota Greenathon (NDTV 24×7) | old website.pdf p.1 |
 | Address | Art Performing Building, In front of Pantho Niwas, Gopalpur, Pin – 761002 | both PDFs, footer |
 | Phone (general/booking) | +91 96924 53808 | client (Murali Sahu), 2026-09-24 |
