@@ -8,6 +8,25 @@ the user) to see what's real vs. planned.
 
 ## Decisions log
 
+- **2026-09-25 — CI/CD set up (GitHub Actions → Vercel).** A push to GitHub
+  wasn't reaching the live site: GitHub showed no Vercel deployments,
+  statuses or webhooks on the repo, i.e. Vercel isn't linked to it (the repo
+  is owned by a different GitHub account than the client's Vercel account).
+  Chose "Option B": `.github/workflows/deploy.yml` — CI (`npm ci`, lint,
+  build on Node 22) on every push and PR, then, for pushes to `main`, a
+  Vercel CLI deploy (`pull` → `build --prod` → `deploy --prebuilt --prod`)
+  run from the repo root so the project's Root Directory (`app`) applies.
+  Env vars stay in Vercel and are pulled at build time. The deploy job
+  skips itself with a notice until three GitHub secrets exist
+  (`VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`), so CI doesn't
+  fail in the meantime. Verified: workflow YAML parses; the CI steps
+  (`npm ci` → lint → build) pass on a fresh clone with no `.env.local`.
+  **Not verified:** the deploy job itself — it needs the client's Vercel
+  token, which this machine doesn't have (the CLI is logged in as the
+  personal account); the first push after the secrets are added is the
+  real test. `ARCHITECTURE.md` §2 and §9 updated from Netlify to Vercel
+  per its own change-control rule.
+
 - **2026-09-25 — Formspree form ID received (`xqpaddvk`).** Every enquiry
   form already posts through `lib/submitEnquiry.ts` when
   `NEXT_PUBLIC_FORMSPREE_ID` is set (falling back to the honest "not

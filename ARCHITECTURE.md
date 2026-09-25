@@ -94,7 +94,7 @@ supplies going forward.
 | Forms | Formspree (client POST via `src/lib/submitEnquiry.ts`), falling back to a Next.js Route Handler stub (`src/app/api/contact/route.ts`) when unconfigured | See §8. Client-requested backend, no new dependency (plain `fetch`). |
 | Package manager | **npm** | Universal, no assumption about the user having pnpm/yarn installed. |
 | Linting/formatting | ESLint (`next/core-web-vitals`) + Prettier | Default Next.js setup, no extra config debt. |
-| Deployment target | **Netlify** | Netlify MCP is already connected in this environment; static/SSG Next.js deploys cleanly there. Do not deploy without explicit user confirmation. |
+| Deployment target | **Vercel** (client's account, project `princedancegroups`), deployed from GitHub Actions (`.github/workflows/deploy.yml`) | Changed from Netlify 2026-09-25 when the client set up their own Vercel account. The repo lives under a different GitHub account than that Vercel account, so Vercel's own Git integration can't watch it — the workflow deploys with the Vercel CLI instead. `netlify.toml` is left in place but unused. Do not deploy anywhere else without explicit user confirmation. |
 
 Nothing here is a placeholder guess to be revisited later — this is the stack.
 If it must change, edit this table first.
@@ -260,14 +260,28 @@ replacement for the enquiry forms.
 
 ## 9. Deployment
 
-Target is Netlify (already connected via MCP in this environment). Steps
-(for when the user asks to deploy, not before):
-1. `npm run build` locally to confirm a clean build.
-2. Connect the Netlify site to this project (new site, not an existing one,
-   unless the user names one).
-3. Set any required environment variables in Netlify's dashboard — never
-   commit them.
-4. Confirm the preview deploy with the user before promoting to production.
+Target is **Vercel** (client's account; project `princedancegroups`, Root
+Directory `app`, Framework Preset Next.js — also pinned in `app/vercel.json`).
+Every push and pull request runs **CI** (`npm ci`, `npm run lint`,
+`npm run build`) via `.github/workflows/deploy.yml`; a push to `main` that
+passes is then **deployed to production** with the Vercel CLI
+(`vercel pull` → `vercel build --prod` → `vercel deploy --prebuilt --prod`).
+
+One-time setup, done by a person (not committed): add three repository
+secrets under GitHub → Settings → Secrets and variables → Actions —
+`VERCEL_TOKEN` (created in the client's Vercel account), `VERCEL_ORG_ID`
+(`team_9wYvBk6micnIHMOVLngxALCz`) and `VERCEL_PROJECT_ID`
+(`prj_8jYWRwX8YmEmKAY8lRkLAkePQVMr`). Until the token exists the deploy job
+skips itself with a notice; CI still runs.
+
+Environment variables live in the **Vercel project** (Settings → Environment
+Variables), never in the repo or the workflow: `NEXT_PUBLIC_SITE_URL`,
+`NEXT_PUBLIC_FORMSPREE_ID`. `vercel pull` brings them into the build, and
+`NEXT_PUBLIC_*` values are baked in at build time.
+
+Manual fallback: from the repo root, logged into the client's Vercel account,
+`vercel --prod --yes` (run from the root, not `app/` — the project's Root
+Directory setting already adds `app`).
 
 ## 10. Change control
 

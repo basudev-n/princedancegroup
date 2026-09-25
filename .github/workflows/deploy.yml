@@ -1,0 +1,93 @@
+# CI/CD: every push/PR is linted and built; pushes to `main` that pass are
+# then deployed to the client's Vercel project (princedancegroups).
+#
+# Why this instead of Vercel's own GitHub integration: the repo lives under a
+# different GitHub account than the client's Vercel account, so Vercel can't
+# watch it directly. This workflow deploys with the Vercel CLI instead.
+#
+# One-time setup (repo → Settings → Secrets and variables → Actions):
+#   VERCEL_TOKEN       a token created in the client's Vercel account
+#                      (Account Settings → Tokens)
+#   VERCEL_ORG_ID      team_9wYvBk6micnIHMOVLngxALCz
+#   VERCEL_PROJECT_ID  prj_8jYWRwX8YmEmKAY8lRkLAkePQVMr
+# Until VERCEL_TOKEN exists, the deploy job skips itself (with a notice)
+# instead of failing, so CI still runs cleanly.
+#
+# Environment variables (e.g. NEXT_PUBLIC_FORMSPREE_ID, NEXT_PUBLIC_SITE_URL)
+# are NOT stored here: `vercel pull` fetches them from the Vercel project so
+# the build uses the same values the dashboard has.
+
+name: CI / Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# One deploy at a time; a newer push cancels a run that hasn't finished.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Lint & build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+
+  deploy:
+    name: Deploy to Vercel
+    needs: check
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - name: Check deploy secrets
+        id: secrets
+        run: |
+          if [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_ORG_ID" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
+            echo "::notice title=Deploy skipped::Add VERCEL_TOKEN, VERCEL_ORG_ID and VERCEL_PROJECT_ID under repo Settings → Secrets → Actions to enable deploys."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - if: steps.secrets.outputs.ready == 'true'
+        uses: actions/checkout@v4
+
+      - if: steps.secrets.outputs.ready == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Run from the repo root: the Vercel project's Root Directory is `app`,
+      # and `vercel pull` brings those project settings (and env vars) down.
+      - if: steps.secrets.outputs.ready == 'true'
+        run: npm install --global vercel@59
+
+      - if: steps.secrets.outputs.ready == 'true'
+        run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+
+      - if: steps.secrets.outputs.ready == 'true'
+        run: vercel build --prod --token="$VERCEL_TOKEN"
+
+      - if: steps.secrets.outputs.ready == 'true'
+        run: vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
