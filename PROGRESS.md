@@ -8,6 +8,23 @@ the user) to see what's real vs. planned.
 
 ## Decisions log
 
+- **2026-09-25 — Formspree form ID received (`xqpaddvk`).** Every enquiry
+  form already posts through `lib/submitEnquiry.ts` when
+  `NEXT_PUBLIC_FORMSPREE_ID` is set (falling back to the honest "not
+  connected" `/api/contact` stub when it isn't), so no code changed. Set it
+  in `app/.env.local` (gitignored; the ID itself is public by design, see
+  ARCHITECTURE.md §8) and confirmed it is compiled into the client build.
+  Checked the endpoint without submitting anything: it exists, and its
+  CORS preflight allows `https://princedancegroups.vercel.app`. **Still
+  needed for it to work on the live site:** add
+  `NEXT_PUBLIC_FORMSPREE_ID=xqpaddvk` to the Vercel project's Environment
+  Variables and redeploy (a `NEXT_PUBLIC_` value is baked in at build
+  time, so a redeploy is required). I couldn't do that from here — the
+  Vercel CLI is logged in as the personal account, not the
+  princedancegroup one. No test submission was sent (it would email the
+  client); Formspree also requires the form owner to confirm their email
+  before the first submission is delivered.
+
 - **2026-09-25 — First real videos on the site (Vimeo + Google Drive).**
   Client supplied 3 Vimeo links (their own uploads: Krishna Leela audition,
   Flag Act semi-final, Dashavatar grand final) and pointed to the Drive

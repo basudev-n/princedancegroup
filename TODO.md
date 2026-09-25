@@ -1522,7 +1522,7 @@ single request rather than piecemeal.
 | # | Needed | Blocks |
 |---|---|---|
 | 1 | **Production domain** | `NEXT_PUBLIC_SITE_URL`, sitemap, robots, canonicals, OG (0.2, 2.1) |
-| 2 | **Formspree account + form ID**; expected monthly volume | All lead capture (0.1) |
+| ~~2~~ | ~~Formspree account + form ID~~ — ID `xqpaddvk` received 2026-09-25 (still: add it to Vercel env + redeploy; confirm expected monthly volume vs plan limits) | Live lead capture (0.1) |
 | 3 | **Social handles/URLs** — FB, Instagram, YouTube ✅ received 2026-09-25; **X/Twitter still needed (or confirm none exists)** | X icon only |
 | ~~4~~ | ~~Which phone is the WhatsApp Business line~~ — confirmed 2026-09-24 | resolved |
 | 5 | **Which act won IGT Season 1** — Krishna Act, Dashavatar, or both | Fixing the contradiction (0.3) |
