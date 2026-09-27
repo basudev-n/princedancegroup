@@ -14,13 +14,20 @@ import type { Service } from "@/content/services";
 // content/services.ts's `FeaturedAct` comment for why "Indian Flag Act"
 // specifically is not linked to the existing Vande Mataram repertoire entry.
 //
-// `detailKicker` (tv-award-show, musical-acts only): the client's source
-// copy has a short line right after the page title, before the intro
-// paragraph ("Offering Much More Than Entertainment" / "The Best Dance
-// Group For Musical Acts"). Rendered here as the section's eyebrow label —
-// the same eyebrow-above-h2 pattern already used site-wide (e.g.
-// HowItWorks.tsx's "How Booking Works" above "Simple Steps to Book Us") —
-// rather than as a second, competing heading elsewhere on the page.
+// `detailKicker` (tv-award-show, musical-acts, religious-events,
+// school-college-function, music-video-movies, promotion-shoots): the
+// client's source copy has a short line right after the page title, before
+// the intro paragraph ("Offering Much More Than Entertainment" / "The Best
+// Dance Group For Musical Acts" / etc). Rendered here as the section's
+// eyebrow label — the same eyebrow-above-h2 pattern already used site-wide
+// (e.g. HowItWorks.tsx's "How Booking Works" above "Simple Steps to Book
+// Us") — rather than as a second, competing heading elsewhere on the page.
+//
+// `detailCapabilities` (music-video-movies, promotion-shoots only): a
+// short list of service categories/formats in the client's copy, distinct
+// from `featuredActs` — these aren't performance names, so rendered as a
+// plain checklist, never as repertoire links, in its own card above
+// Featured Acts.
 export function ServiceDetail({ service }: { service: Service }) {
   if (!service.detailHeading) return null;
 
@@ -47,6 +54,25 @@ export function ServiceDetail({ service }: { service: Service }) {
               ))}
             </div>
           </div>
+
+          <div className="flex flex-col gap-6">
+          {service.detailCapabilities && service.detailCapabilities.length > 0 && (
+            <div className="rounded-nocturne-lg bg-nocturne-surface-container border border-nocturne-stage-border p-6 md:p-8 h-fit">
+              <span className="font-hanken text-xs font-semibold uppercase tracking-widest text-nocturne-gold">
+                What We Offer
+              </span>
+              <ul className="mt-4 flex flex-col gap-2.5">
+                {service.detailCapabilities.map((item) => (
+                  <li key={item} className="flex items-start gap-2 font-hanken text-sm text-nocturne-text-primary">
+                    <span className="material-symbols-outlined text-[16px] text-nocturne-gold shrink-0 mt-0.5" aria-hidden="true">
+                      check_circle
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {service.featuredActs && service.featuredActs.length > 0 && (
             <div className="rounded-nocturne-lg bg-nocturne-surface-container border border-nocturne-stage-border p-6 md:p-8 h-fit">
@@ -81,6 +107,7 @@ export function ServiceDetail({ service }: { service: Service }) {
               </ul>
             </div>
           )}
+          </div>
         </div>
       </div>
     </section>

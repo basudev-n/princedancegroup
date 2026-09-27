@@ -1283,19 +1283,30 @@ site.
 
 ### 6.3 Thin pages 🔒
 
-- [~] **8 of 9 service detail pages are ~85% boilerplate.** Measured word
+- [x] **8 of 9 service detail pages are ~85% boilerplate.** Measured word
       counts: 204–217 words each, of which the unique content is
       `name` + `summary` ≈ **30 words**; the rest is the identical
       `HowItWorks` + recycled `RelatedServices` + CTA. `/services/wedding-events`
       at 459 words proves the template works once real copy exists.
-      **4 of 8 DONE 2026-09-27** — client supplied the real archived
-      "Read More" copy for `corporate-events`, `wedding-events`,
-      `tv-award-show`, `musical-acts` (see PROGRESS.md's 2026-09-27 entry).
-      New `ServiceDetail.tsx` section renders it (heading + real paragraphs
-      + a "Featured Acts" chip list) below the hero, only for services with
-      `detailHeading` set — `religious-events`, `school-college-function`,
-      `mahotsavs`, `music-video-movies`, `promotion-shoots` still show the
-      honest "coming soon" note and are still `TODO(content)`. Also surfaced
+      **7 of 8 DONE — 2026-09-27 (`corporate-events`, `wedding-events`,
+      `tv-award-show`, `musical-acts`) + 2026-09-28 (`religious-events`,
+      `school-college-function`, `music-video-movies`,
+      `promotion-shoots`).** Only `mahotsavs` remains `TODO(content)` — no
+      client copy supplied for it yet, still shows the honest "coming soon"
+      note. `ServiceDetail.tsx` renders the real copy (heading + paragraphs
+      + a "Featured Acts" chip list, plus a "What We Offer" capability
+      checklist for the 2 services whose copy has one —
+      `music-video-movies`/`promotion-shoots`) below the hero, for every
+      service with `detailHeading` set. **A 2026-09-28 correction, worth
+      knowing if you touch `content/services.ts` again**: the first pass
+      at the 4 done 2026-09-27 had silently dropped real sentences
+      (including every closing "call us to book" line) under an
+      over-broad reading of "light editing" — re-verified sentence-by-
+      sentence against the client's original paste and fixed; the actual
+      policy is now much narrower (see the field's own comment in
+      `content/services.ts`) — only the literal repeated act-name
+      enumeration gets trimmed, everything else stays verbatim. Also
+      surfaced
       a real open question: the client's copy names 10 real acts
       (Dashavatar, Ram Sita, Krishna Leela, Radha Krishna, Natraj Act,
       Shiva Tandava, **Indian Flag Act**, Global Act, Ganesh Act, Durga

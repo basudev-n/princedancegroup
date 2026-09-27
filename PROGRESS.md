@@ -8,6 +8,35 @@ the user) to see what's real vs. planned.
 
 ## Decisions log
 
+- **2026-09-28 — Real detail copy added for 4 more services (Religious
+  Events, School/College Function, Music Video/Movies, Promotion Shoots).**
+  Client pasted the remaining content into a new root-level scratch file
+  (`service-update-content.md`, not shipped — a working source doc, same
+  role as `old website.pdf`/the Services PDF). Applied the corrected
+  sentence-fidelity standard from the same day's earlier entry throughout
+  — no dropped sentences, only the literal repeated act-name list trimmed.
+  7 of 8 generic services now have real copy; only `mahotsavs` remains
+  `TODO(content)` (not supplied yet). Two of the four
+  (`music-video-movies`, `promotion-shoots`) have a genuinely different
+  kind of list in their source copy — service categories/formats ("Music
+  and concept", "Planning and Casting", etc.), not mythological act names
+  — so a new `detailCapabilities?: string[]` field was added rather than
+  forcing them into `featuredActs`; `ServiceDetail.tsx` renders it as a
+  "What We Offer" checklist card, stacked above the existing "Featured
+  Acts" card when both are present. One real typo fix (not a rewording):
+  "industry highweights" → "heavyweights" in Music Video/Movies (not a
+  real word, same class of fix as `musical-acts`' "presets" → "presents").
+  Religious Events' copy has a second, narrower act list ("our other
+  suitable acts include...", 6 of the 10 names) distinct from the full
+  roster — kept intact rather than trimmed, since it's genuinely different
+  information (which acts suit religious events specifically), not a
+  repeat of the full list. `npm run build` + `npm run lint` clean.
+  Verified live: pulled each page's full rendered text and confirmed
+  against the source file; confirmed the two-card sidebar stacks correctly
+  (capabilities above featured acts) via DOM geometry, since the browser
+  pane's screenshot capture wasn't reflecting current state reliably this
+  session.
+
 - **2026-09-28 — Corrected a fidelity error in the 4 service-page detail
   copy landed 2026-09-27.** User re-pasted the Musical Acts source text and
   asked me to confirm it matched — on a real sentence-by-sentence diff, it

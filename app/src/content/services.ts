@@ -51,6 +51,13 @@ export type Service = {
   detailHeading?: string;
   detailBody?: string[];
   featuredActs?: FeaturedAct[];
+  // 2026-09-28: a short list of concrete service categories/formats — used
+  // only where the client's copy has this kind of list instead of (or
+  // alongside) the mythological act names, e.g. music-video-movies' "Music
+  // and concept / Conception and execution / ..." list. Distinct from
+  // `featuredActs`: these aren't performance names, so never rendered as
+  // repertoire links.
+  detailCapabilities?: string[];
 };
 
 // Shared across the 4 services with real detail copy — the same 10 real
@@ -158,7 +165,21 @@ export const services: Service[] = [
       "Meticulously designed and choreographed non-Bollywood dance acts rooted in authentic classical Indian dance forms, suited to religious occasions.",
     metaDescription:
       "Prince Dance Group performs classical Indian dance for religious events and Mahotsavs. India's Got Talent Season 1 champions, based in Odisha, India.",
-    detail: "TODO(content): list specific classical forms performed (e.g. Odissi, Chhau) once confirmed with the client.",
+    detailKicker: "Suitable Entertainment For Religious Occasions",
+    detail:
+      "Here at Prince Dance Group, we meticulously design and choreograph dance acts to offer suitable entertainment at religious events. These acts will be non-Bollywood musical acts, based on the authentic classical Indian dance form.",
+    detailHeading: "Bespoke Dance Acts By The Best Dance Group",
+    detailBody: [
+      "Regarding religious events, we beautifully portray acts such as the Krishna Leela journey. This performance captures the enchanting essence of his birth to his Vishwaroopam to leave the audience absolutely spellbound.",
+      // A distinct, narrower list than the full featuredActs roster below —
+      // specifically which acts the client calls out as suited to religious
+      // events, not a repeat of the full list — kept intact rather than
+      // trimmed.
+      "Our other suitable acts include Krishna Leela, Radha Krishna, Natraj Act, Siva Tandav, Ganesh Act, Durga Act, etc. Infused with a fascinating and delightful aura of devotion and celebration, all these musical presentations are popular choices for any type of religious event and devotional gathering.",
+      "Apart from the above-mentioned acts, our best dance groups for religious events can also offer acts personalised to your specific requirements. Our dance artists are highly talented and have years of experience in offering such services.",
+      "We aim to bring a unique and suitable blend of entertainment and spiritual celebration to diverse devotional occasions. Call us to organize vibrant dance acts for your religious events.",
+    ],
+    featuredActs: [...coreFeaturedActs, bespokeAct],
   },
   {
     slug: "school-college-function",
@@ -167,7 +188,17 @@ export const services: Service[] = [
       "A one-stop entertainment solution for school and college events, with a track record of performances that leave audiences amazed.",
     metaDescription:
       "Prince Dance Group brings India's Got Talent Season 1-winning performances to school and college events. Odisha-based troupe, enquire for booking.",
-    detail: "TODO(content): expand with past institutional bookings.",
+    detailKicker: "Special Acts for School College Function",
+    detail:
+      "Prince Dance Group is your one-stop solution for all things entertainment that guarantees to leave your audience enchanted. That is why we are the best choice when it comes to school and college events. Our team has served many such events before bringing you acts that redefine awe and amazement.",
+    detailHeading: "We Offer The Best Musical Acts",
+    detailBody: [
+      "Our best dance group for school and college functions is going to be the best inclusion in your event. We have a lot to offer. We offer spectacular theme-based programs while we can also present special dance acts based on mythological stories as well as various other bespoke acts.",
+      "We present a spellbinding performance which offers an enchanting experience crafted by our highly appreciated team. Every act will be a vibrant and captivating journey that will take the audience into a world of wonder, imagination, as well as unparalleled artistry.",
+      "Our best dance group will meticulously craft the custom theme acts for school and college functions.",
+      "Also, you can ask for an entirely customised act. It is not going to be an ordinary act for sure. You will witness something immersive and dynamic that flawlessly incorporates dance with the latest technology and music. Also, there will be stunning visual effects and mesmerizing lighting. Each act will be a great combination of artistry and the latest technology. Book us today!",
+    ],
+    featuredActs: [...coreFeaturedActs, bespokeAct],
   },
   {
     slug: "mahotsavs",
@@ -185,7 +216,27 @@ export const services: Service[] = [
       "Choreography for music videos and films, bringing a distinctive style and blend of creativity and innovation to the screen.",
     metaDescription:
       "Prince Dance Group offers choreography for music videos and films — India's Got Talent Season 1 champions bringing creativity to the screen. Odisha-based.",
-    detail: "TODO(content): list specific music videos/films once confirmed with the client.",
+    detailKicker: "Best Dance Group For Music Videos & Movies",
+    detail:
+      "Prince Dance Group takes the lead in choreography and we have already imprinted a unique style on various music videos. Our best dance group for music videos and movies comes with an unparalleled blend of creativity and innovation.",
+    detailCapabilities: [
+      "Music and concept",
+      "Conception and execution",
+      "Dance Equipment and Props",
+      "Casting and crew",
+      "Planning and production",
+      "Choreography",
+    ],
+    detailHeading: "Inclusive Support For Music Video Production",
+    detailBody: [
+      "Our best dance group for music videos and movies are renowned for adding a distinctive touch to every project. We are highly appreciated for our precision and depth. This is what makes Prince Dance Group the preferred choice for various artists and filmmakers who are looking for captivating choreography.",
+      "Our artists are proud to leave an undeniable impact on the visual background of music videos. This is what solidifies our position as groundbreakers in the field.",
+      "From music videos to movies, our all-inclusive range of services ensures a smooth and stunning video production experience for clients. Choose us for a holistic and seamless video production journey. Our service combines creativity, artistry, and advanced technical expertise.",
+      // "highweights" → "heavyweights": an unambiguous typo fix (not a real
+      // word), same category as musical-acts' "presets" → "presents".
+      "We are committed to delivering captivating visual narratives. And our team has already partnered with several industry heavyweights. Apart from this we also offer various other acts, as well as various bespoke acts for different occasions. Call us for a booking!",
+    ],
+    featuredActs: [...coreFeaturedActs, bespokeAct],
   },
   {
     slug: "promotion-shoots",
@@ -194,7 +245,25 @@ export const services: Service[] = [
       "Dancers for television adverts and promotional shoots, including bespoke choreography and flash-mob activations.",
     metaDescription:
       "Book Prince Dance Group for TV commercials and promotional shoots — India's Got Talent Season 1 champions offering choreography and flash-mob acts.",
-    detail: "TODO(content): expand with brand/agency case studies once available.",
+    detailKicker: "Best Dance Group For Promotion Shoots",
+    detail:
+      "Prince Dance Group is the right place to contact if you are looking to hire dancers for a television advert or any kind of promotional shoot. Do you need bespoke dance acts for a video? Would you like to have a flash mob to get your videos viral across social media? Drop us a line!",
+    detailCapabilities: [
+      "Planning and Casting",
+      "Commercial advertisement",
+      "Music videos",
+      "Flash mob",
+      "Bespoke brand videos",
+      "TV and online advertisements",
+    ],
+    detailHeading: "Bespoke Dance Acts For Promotion Shoots",
+    detailBody: [
+      "We take the best care of our clients' commercial needs. No matter what niche, genre, or style of dance you are interested in, we have got you covered. Let us know whether for commercials or music videos, you're filming, our dancers have got your back.",
+      "Our team of artists can get you exactly what you seek when you want it. We have successfully served some of the biggest companies as well as ad agencies. From planning to casting your brand videos, we offer a comprehensive solution.",
+      "Promote your service or products through online media and TV adverts by using our experienced and talented dance acts. Our bespoke service will be fully customised to meet your requirements. Therefore, please let us know your vision and we will help you make it real.",
+      "If you have a specific theme in mind or you have thought about a style or brief, share it with us. Our team will work with you to bring your ideas to life. We also perform on various shows, events, and occasions. We also stage other bespoke acts. Contact us today to hire the best dance group for promotion shoots.",
+    ],
+    featuredActs: [...coreFeaturedActs, bespokeAct],
   },
 ];
 
