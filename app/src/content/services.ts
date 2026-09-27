@@ -60,10 +60,12 @@ export type Service = {
   detailCapabilities?: string[];
 };
 
-// Shared across the 4 services with real detail copy — the same 10 real
-// acts recur verbatim in the client's copy for Corporate Events and Wedding
-// Events (no "Bespoke Acts" line), and TV Award Show / Musical Acts (same
-// 10, plus an explicit "Bespoke acts" line in both).
+// Shared across all 8 services with real detail copy — the same 10 real
+// acts recur verbatim in the client's copy every time. Only Corporate
+// Events and Wedding Events have no explicit "Bespoke Acts" line in their
+// source text; all 6 others (TV Award Show, Musical Acts, Religious
+// Events, School/College Function, Music Video/Movies, Promotion Shoots)
+// do, so those 6 use `[...coreFeaturedActs, bespokeAct]`.
 const coreFeaturedActs: FeaturedAct[] = [
   { name: "Dashavatar", slug: "dashavatar" },
   { name: "Ram Sita" },
