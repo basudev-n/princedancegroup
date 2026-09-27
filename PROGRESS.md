@@ -8,6 +8,35 @@ the user) to see what's real vs. planned.
 
 ## Decisions log
 
+- **2026-09-28 — Corrected a fidelity error in the 4 service-page detail
+  copy landed 2026-09-27.** User re-pasted the Musical Acts source text and
+  asked me to confirm it matched — on a real sentence-by-sentence diff, it
+  didn't. The earlier pass had over-edited: it silently dropped whole
+  sentences (including the closing "Call us to book our show!" line, on
+  *every* one of the 4 services, not just Musical Acts) and paraphrased
+  word choices beyond the "light editing" it claimed, while also completely
+  missing a short "kicker" heading that sits right after the page title in
+  the client's original text for TV Award Show ("Offering Much More Than
+  Entertainment") and Musical Acts ("The Best Dance Group For Musical
+  Acts"). Re-audited all 4 against the original pasted text and rewrote
+  `content/services.ts` to match sentence-for-sentence. New optional
+  `detailKicker` field (only these 2 services have one), rendered by
+  `ServiceDetail.tsx` as the section's eyebrow label — the same
+  eyebrow-above-h2 pattern already used site-wide, rather than a second
+  competing heading. **The only intentional removal, now and before, is
+  the literal enumerated act-name list** (e.g. "...featuring Dashavatar,
+  Ram Sita, Krishna Leela, ... etc."), since it's shown once as the
+  `featuredActs` chip list instead of repeated inline — everything else is
+  the client's real wording. Two remaining fixes, both genuine
+  errors, not rewording: "presets" → "presents" (Musical Acts), and a
+  dangling, grammatically-incomplete "Therefore, if you want to
+  experience..." fragment in TV Award Show's original text, completed into
+  a real sentence keeping the same content rather than shipped broken or
+  silently deleted. `npm run build` + `npm run lint` clean. Verified live
+  by pulling each page's full rendered text and comparing it directly
+  against the original pasted source for all 4 services, not just
+  eyeballing it.
+
 - **2026-09-27 — Real service detail copy added for 4 of 9 services.**
   Client supplied the real archived "Read More" sub-page copy for
   Corporate Events, Wedding Events, TV Award Show, and Musical Acts —

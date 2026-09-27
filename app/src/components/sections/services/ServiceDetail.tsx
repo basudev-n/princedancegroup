@@ -13,6 +13,14 @@ import type { Service } from "@/content/services";
 // client's own copy, but with no matching page yet) — see
 // content/services.ts's `FeaturedAct` comment for why "Indian Flag Act"
 // specifically is not linked to the existing Vande Mataram repertoire entry.
+//
+// `detailKicker` (tv-award-show, musical-acts only): the client's source
+// copy has a short line right after the page title, before the intro
+// paragraph ("Offering Much More Than Entertainment" / "The Best Dance
+// Group For Musical Acts"). Rendered here as the section's eyebrow label —
+// the same eyebrow-above-h2 pattern already used site-wide (e.g.
+// HowItWorks.tsx's "How Booking Works" above "Simple Steps to Book Us") —
+// rather than as a second, competing heading elsewhere on the page.
 export function ServiceDetail({ service }: { service: Service }) {
   if (!service.detailHeading) return null;
 
@@ -21,9 +29,14 @@ export function ServiceDetail({ service }: { service: Service }) {
       <div className="max-w-[1200px] mx-auto px-6 md:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] gap-10 lg:gap-14">
           <div>
+            {service.detailKicker && (
+              <span className="font-hanken text-xs font-semibold uppercase tracking-widest text-nocturne-gold">
+                {service.detailKicker}
+              </span>
+            )}
             <h2
               style={{ fontFamily: "var(--font-headline-nocturne)" }}
-              className="text-2xl sm:text-3xl font-bold text-nocturne-text-primary mb-4"
+              className="mt-1 text-2xl sm:text-3xl font-bold text-nocturne-text-primary mb-4"
             >
               {service.detailHeading}
             </h2>
