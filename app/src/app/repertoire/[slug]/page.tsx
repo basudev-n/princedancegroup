@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { repertoire } from "@/content/home";
 import { RepertoireActDetail } from "@/components/sections/repertoire/RepertoireActDetail";
+import { RepertoireActVideo } from "@/components/sections/repertoire/RepertoireActVideo";
 import { RelatedActs } from "@/components/sections/repertoire/RelatedActs";
 import { ServicesCTA } from "@/components/sections/services/ServicesCTA";
 
@@ -56,6 +57,7 @@ export default async function RepertoireActPage({
   return (
     <div className="font-hanken bg-nocturne-surface">
       <RepertoireActDetail act={act} />
+      <RepertoireActVideo slug={act.slug} />
       <RelatedActs currentSlug={act.slug} />
       <ServicesCTA
         heading={`Book ${act.title} for Your Event`}

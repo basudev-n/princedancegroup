@@ -13,6 +13,9 @@ import type { Service } from "@/content/services";
 // client's own copy, but with no matching page yet) — see
 // content/services.ts's `FeaturedAct` comment for why "Indian Flag Act"
 // specifically is not linked to the existing Vande Mataram repertoire entry.
+// 2026-09-28: acts without a repertoire page but with a real video
+// (`videoAnchor`) link to that video on /gallery, with a play icon instead
+// of the repertoire chips' arrow, so the two destinations read differently.
 //
 // `detailKicker` (tv-award-show, musical-acts, religious-events,
 // school-college-function, music-video-movies, promotion-shoots): the
@@ -80,7 +83,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                 Featured Acts
               </span>
               <p className="mt-1 mb-5 font-hanken text-sm text-nocturne-text-muted">
-                A selection of the acts available for this service.
+                A selection of the acts available for this service. Tap an act to see it.
               </p>
               <ul className="flex flex-wrap gap-2">
                 {service.featuredActs.map((act) =>
@@ -94,6 +97,19 @@ export function ServiceDetail({ service }: { service: Service }) {
                         <span className="material-symbols-outlined text-[13px]" aria-hidden="true">
                           arrow_outward
                         </span>
+                      </Link>
+                    </li>
+                  ) : act.videoAnchor ? (
+                    <li key={act.name}>
+                      <Link
+                        href={`/gallery#${act.videoAnchor}`}
+                        aria-label={`Watch ${act.name} on video`}
+                        className="inline-flex min-h-11 items-center gap-1 rounded-full border border-nocturne-stage-border bg-nocturne-surface-container-lowest px-3 py-1 font-hanken text-xs font-semibold text-nocturne-text-primary hover:border-nocturne-gold/50 hover:text-nocturne-gold transition-colors"
+                      >
+                        <span className="material-symbols-outlined text-[15px] text-nocturne-gold" aria-hidden="true">
+                          play_arrow
+                        </span>
+                        {act.name}
                       </Link>
                     </li>
                   ) : (

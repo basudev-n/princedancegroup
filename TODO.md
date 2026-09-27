@@ -1261,6 +1261,11 @@ site.
       supplied 3 Vimeo videos + a Drive file; live on `/gallery#videos` and
       Home's gallery tile (see PROGRESS.md). Playback still needs one
       real-browser check. **S / High**
+- [x] Per-act videos. **DONE 2026-09-28.** Client supplied 18 YouTube
+      links (one per act); live on `/gallery#act-videos`, the 3 matching
+      repertoire pages, and every service page's Featured Acts chips. All
+      18 play-tested in an embed. Open: does Vande Mataram / Surya Namaskar
+      have a video (client to confirm the mapping)?
 - [x] Meanwhile: fix the video-placeholder affordances. **DONE
       2026-09-22.** Home's `Gallery.tsx` tile icon swapped `play_arrow` →
       `schedule` — a disabled tile with a play-button icon reads as a
@@ -1579,7 +1584,9 @@ Recorded so a future session doesn't re-litigate these:
   and violates Google's review-snippet policy. Bare `Review` objects
   without `reviewRating` are valid but ineligible for rich results, so
   there's no payoff either.
-- **`VideoObject` schema** — no video exists.
+- **`VideoObject` schema** — ~~no video exists~~ 22 real videos now
+  (2026-09-28); worth adding to `/gallery` and the 3 repertoire pages
+  (needs an upload date per video from the client or YouTube).
 - **`Article` schema** — not until real bodies and publish dates land;
   marking up an 85-word placeholder invites a thin-content signal.
 - **`LocalBusiness` as the primary type** — the Gopalpur address is a real

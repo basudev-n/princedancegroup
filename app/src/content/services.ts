@@ -8,12 +8,19 @@
 // Tandava) — rendered as a real internal link. Every other name (Ram Sita,
 // Radha Krishna, Natraj Act, Indian Flag Act, Global Act, Ganesh Act, Durga
 // Act) is real (the client's own copy) but has no matching page yet, so it
-// renders as plain text, not a guessed link. In particular, "Indian Flag
+// never gets a guessed repertoire link (see `videoAnchor` below instead). In particular, "Indian Flag
 // Act" is deliberately NOT linked to the existing "Vande Mataram Patriot
 // Symphony" repertoire entry — they may be the same act, but that's a
 // naming decision for the client, not an assumption to bake into a link.
 // See PROGRESS.md's 2026-09-27 entry.
-export type FeaturedAct = { name: string; slug?: string };
+//
+// 2026-09-28: `videoAnchor` — for acts with no repertoire page but a real
+// performance video (content/videos.ts's `actVideos`), the chip links to
+// that video on /gallery (`/gallery#<videoAnchor>`) instead of being plain
+// text. "Indian Flag Act" points at the client's "Indian flag" video (the
+// Jai Ho version is a separate act on the gallery). "Bespoke Acts" points
+// at the Customised Special Acts group.
+export type FeaturedAct = { name: string; slug?: string; videoAnchor?: string };
 
 export type Service = {
   slug: string;
@@ -68,17 +75,17 @@ export type Service = {
 // do, so those 6 use `[...coreFeaturedActs, bespokeAct]`.
 const coreFeaturedActs: FeaturedAct[] = [
   { name: "Dashavatar", slug: "dashavatar" },
-  { name: "Ram Sita" },
+  { name: "Ram Sita", videoAnchor: "video-ram-sita" },
   { name: "Krishna Leela", slug: "krishna-leela" },
-  { name: "Radha Krishna" },
-  { name: "Natraj Act" },
+  { name: "Radha Krishna", videoAnchor: "video-radha-krishna" },
+  { name: "Natraj Act", videoAnchor: "video-natraj" },
   { name: "Shiva Tandava", slug: "shiva-tandava" },
-  { name: "Indian Flag Act" },
-  { name: "Global Act" },
-  { name: "Ganesh Act" },
-  { name: "Durga Act" },
+  { name: "Indian Flag Act", videoAnchor: "video-indian-flag" },
+  { name: "Global Act", videoAnchor: "video-global" },
+  { name: "Ganesh Act", videoAnchor: "video-ganesh" },
+  { name: "Durga Act", videoAnchor: "video-durga" },
 ];
-const bespokeAct: FeaturedAct = { name: "Bespoke Acts" };
+const bespokeAct: FeaturedAct = { name: "Bespoke Acts", videoAnchor: "custom-acts" };
 
 export const services: Service[] = [
   {

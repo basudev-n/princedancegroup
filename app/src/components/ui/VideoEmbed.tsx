@@ -6,7 +6,7 @@ import { formatDuration, videoEmbedUrl, type Video } from "@/content/videos";
 import { glassChipDanza } from "@/lib/glass";
 
 // 2026-09-25. Click-to-play embed: shows a local poster with a play button and
-// only mounts the Vimeo/Google Drive iframe once a visitor presses play — so
+// only mounts the Vimeo/Google Drive/YouTube (nocookie) iframe once a visitor presses play — so
 // the page loads no third-party player scripts, cookies or tracking until then
 // (and stays fast; three embedded players would otherwise add ~1MB+ each).
 // `autoPlay` starts playing immediately (used by the modal, where the click

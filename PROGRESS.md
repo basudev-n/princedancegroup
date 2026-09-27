@@ -8,6 +8,39 @@ the user) to see what's real vs. planned.
 
 ## Decisions log
 
+- **2026-09-28 — A video for every act (18 YouTube links from the client).**
+  Client sent 18 links to their own YouTube channel ("princedancegroup"):
+  14 signature acts + 4 customised special acts. A verification agent
+  checked each via YouTube oEmbed (all resolve, all on that channel, all
+  embeddable, no duplicates — the two Indian-flag videos, "Triranga" and
+  "Jai Ho", are different uploads). Then every one was actually played in
+  a youtube-nocookie embed in the browser via YouTube's IFrame API: 18/18
+  reached PLAYING (no age/region/embed blocks); the player-reported
+  durations are what the duration badges show. Where they appear:
+  - **`/gallery#act-videos`** (new `gallery/ActVideoLibrary.tsx`, after
+    the IGT `VideoShowcase`): two groups, Signature Acts
+    (`#signature-acts`) and Customised Special Acts (`#custom-acts`); every
+    card has an `id="video-<slug>"` anchor.
+  - **`/repertoire/dashavatar`, `/krishna-leela`, `/shiva-tandava`**
+    (new `repertoire/RepertoireActVideo.tsx`) — only acts confirmed to be
+    the same act as an existing repertoire page (`repertoireSlug` in
+    `content/videos.ts`).
+  - **Service pages' Featured Acts chips** — the 7 acts with no repertoire
+    page (Ram Sita, Radha Krishna, Natraj, Indian Flag, Global, Ganesh,
+    Durga) now link to their video on /gallery (play icon) instead of
+    being plain text; "Bespoke Acts" links to `#custom-acts`. New optional
+    `videoAnchor` on `FeaturedAct`.
+  Same click-to-play facade as the Vimeo videos: local posters (YouTube's
+  own thumbnails, saved to `public/images/videos/acts/`, letterbox bands
+  cropped where genuinely black) and zero requests to YouTube until play —
+  verified in-browser. No new dependency.
+  Deliberately **not** done, pending the client: the "Vande Mataram
+  Patriot Symphony" and "Surya Namaskar" repertoire pages get no video —
+  neither name is in the client's act list, and whether Vande Mataram is
+  the "Indian Flag Act" or "Vande Utkal Janani" video is the client's call,
+  not a guess. Also: the "Customised Act" video's YouTube title names the
+  specific client event it was made for; the site captions it generically.
+
 - **2026-09-28 — Real detail copy added for 4 more services (Religious
   Events, School/College Function, Music Video/Movies, Promotion Shoots).**
   Client pasted the remaining content into a new root-level scratch file
