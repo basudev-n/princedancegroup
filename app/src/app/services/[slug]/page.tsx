@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { services } from "@/content/services";
 import { ServiceDetailHero } from "@/components/sections/services/ServiceDetailHero";
+import { ServiceDetail } from "@/components/sections/services/ServiceDetail";
 import { WeddingHero } from "@/components/sections/services/WeddingHero";
 import { WeddingActs } from "@/components/sections/services/WeddingActs";
 import { WeddingCoordination } from "@/components/sections/services/WeddingCoordination";
@@ -65,6 +66,7 @@ export default async function ServiceDetailPage({
           the sitewide PerformingGroup via `provider`. */}
       <JsonLd data={getServiceJsonLd(service)} />
       <ServiceDetailHero service={service} index={index} total={services.length} />
+      <ServiceDetail service={service} />
       {isWeddingEvents ? (
         <>
           <WeddingHero />

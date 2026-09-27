@@ -1283,12 +1283,26 @@ site.
 
 ### 6.3 Thin pages 🔒
 
-- [ ] **8 of 9 service detail pages are ~85% boilerplate.** Measured word
+- [~] **8 of 9 service detail pages are ~85% boilerplate.** Measured word
       counts: 204–217 words each, of which the unique content is
       `name` + `summary` ≈ **30 words**; the rest is the identical
       `HowItWorks` + recycled `RelatedServices` + CTA. `/services/wedding-events`
-      at 459 words proves the template works once real copy exists. The
-      `detail` field is `TODO(content)` on all 8. **L / High** 🔒
+      at 459 words proves the template works once real copy exists.
+      **4 of 8 DONE 2026-09-27** — client supplied the real archived
+      "Read More" copy for `corporate-events`, `wedding-events`,
+      `tv-award-show`, `musical-acts` (see PROGRESS.md's 2026-09-27 entry).
+      New `ServiceDetail.tsx` section renders it (heading + real paragraphs
+      + a "Featured Acts" chip list) below the hero, only for services with
+      `detailHeading` set — `religious-events`, `school-college-function`,
+      `mahotsavs`, `music-video-movies`, `promotion-shoots` still show the
+      honest "coming soon" note and are still `TODO(content)`. Also surfaced
+      a real open question: the client's copy names 10 real acts
+      (Dashavatar, Ram Sita, Krishna Leela, Radha Krishna, Natraj Act,
+      Shiva Tandava, **Indian Flag Act**, Global Act, Ganesh Act, Durga
+      Act) — 3 already match `/repertoire/[slug]` pages and are now linked;
+      "Indian Flag Act" is NOT linked to the existing "Vande Mataram
+      Patriot Symphony" repertoire entry, since they may be the same act
+      but that's a client naming decision, not mine to assume. **L / High** 🔒
 - [ ] **3 journal articles are effectively empty** (80–87 words; `body` is a
       literal `TODO(content)`). Either get the bodies, or hide `/journal`
       from the nav until at least one real article exists — it's currently

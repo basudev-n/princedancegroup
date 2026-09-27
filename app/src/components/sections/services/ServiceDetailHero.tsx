@@ -12,12 +12,15 @@ import { JsonLd } from "@/components/JsonLd";
 import { glassChipNocturne } from "@/lib/glass";
 
 // DESIGN.md §17 — token reskin only. Same real-photo-standing-in-generically
-// pattern as the Phase 6 version (no service-specific photography exists),
-// same honest "detail coming soon" placeholder rather than the raw
-// content-file TODO string. This UI pass adds the same per-service
-// Material Symbol used in `ServicesList`/`RelatedServices` next to the
-// heading, so a service keeps a consistent visual identity from the list
-// row through to its own detail page.
+// pattern as the Phase 6 version (no service-specific photography exists).
+// This UI pass adds the same per-service Material Symbol used in
+// `ServicesList`/`RelatedServices` next to the heading, so a service keeps
+// a consistent visual identity from the list row through to its own detail
+// page.
+//
+// 2026-09-27: the "detail coming soon" placeholder below now only shows for
+// services without real detail copy (`!service.detailHeading`) — the other
+// 4 render the client's real copy via `ServiceDetail.tsx` instead.
 export function ServiceDetailHero({
   service,
   index,
@@ -111,11 +114,16 @@ export function ServiceDetailHero({
               {service.summary}
             </p>
 
-            <p className="mt-3">
-              <PlaceholderNote tone="on-nocturne">
-                Detailed service information coming soon.
-              </PlaceholderNote>
-            </p>
+            {/* 2026-09-27: only shown for the 5 services still without real
+                detail copy — the other 4 have it below via ServiceDetail.tsx,
+                so repeating "coming soon" here would be dishonest. */}
+            {!service.detailHeading && (
+              <p className="mt-3">
+                <PlaceholderNote tone="on-nocturne">
+                  Detailed service information coming soon.
+                </PlaceholderNote>
+              </p>
+            )}
 
             <div className="mt-8">
               {/* TODO.md Phase 5: was "Enquire to Book" identically on

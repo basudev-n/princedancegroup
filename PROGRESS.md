@@ -8,6 +8,48 @@ the user) to see what's real vs. planned.
 
 ## Decisions log
 
+- **2026-09-27 — Real service detail copy added for 4 of 9 services.**
+  Client supplied the real archived "Read More" sub-page copy for
+  Corporate Events, Wedding Events, TV Award Show, and Musical Acts —
+  exactly what TODO.md Phase 6.3 flagged as missing (the source PDF never
+  captured these pages). Verified against known fabrication patterns from
+  earlier Stitch-sourced content on this project (invented stats, fake
+  testimonials, wrong contact info, unsourced technical specs) — found
+  none; this is genuine client marketing copy. Light editing only: fixed
+  clear subject/verb agreement errors ("team...are" → "is", "group...help"
+  → "helps"), fixed "presets" → "presents", and trimmed the act-name list
+  out of the prose paragraphs (it now renders once as a real chip list
+  instead of being repeated a second/third time inline) — no facts added
+  or changed. New `content/services.ts` fields (`detailHeading`,
+  `detailBody: string[]`, `featuredActs: FeaturedAct[]`), set only on
+  these 4 services; new `services/ServiceDetail.tsx` renders them (real
+  paragraphs + a chip list) below the hero, returning `null` for the other
+  5 services, which keep `ServiceDetailHero`'s honest "coming soon" note
+  (now conditional on `!service.detailHeading` instead of always shown).
+  **A real open question surfaced, deliberately not resolved here**: the
+  client's copy names 10 real acts across all 4 services — Dashavatar, Ram
+  Sita, Krishna Leela, Radha Krishna, Natraj Act, Shiva Tandava, **Indian
+  Flag Act**, Global Act, Ganesh Act, Durga Act (plus "Bespoke Acts" on TV
+  Award Show/Musical Acts only, matching the client's own copy exactly).
+  3 already match existing `/repertoire/[slug]` pages and are now real
+  links (Dashavatar, Krishna Leela, Shiva Tandava); the other 7 render as
+  plain-text chips, not links — in particular, "Indian Flag Act" is
+  deliberately NOT linked to the existing "Vande Mataram Patriot Symphony"
+  repertoire entry (added 2026-09-22 from a Drive photo literally named
+  "Flag act.jpg"). They may well be the same act, but asserting that by
+  linking them would be a naming decision, not a fact I'm confident enough
+  in to bake into a link — ask the client to confirm before merging or
+  renaming anything in `content/home.ts`'s canonical repertoire. `npm run
+  build` + `npm run lint` clean. Verified live: all 3 new pages (Corporate,
+  TV Award Show, Musical Acts) render real paragraphs + the correct chip
+  set (10 vs. 11 with "Bespoke Acts"); confirmed the 3 linked chips
+  navigate to the right repertoire pages; confirmed Wedding Events' new
+  section sits correctly before its existing dedicated sections
+  (`WeddingHero`/`WeddingActs`/etc.) with no duplication; confirmed an
+  untouched service (`religious-events`) still shows the "coming soon"
+  placeholder and no chip list; checked chip touch-target sizing at
+  375px (all 44px).
+
 - **2026-09-25 — Contact page layout fixed (client: "layout is off,
   especially on desktop").** Measured at desktop width: a single tall left
   column (photo → contact card → map → commitments, **1280px**) beside a
