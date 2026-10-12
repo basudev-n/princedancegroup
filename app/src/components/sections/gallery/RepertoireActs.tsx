@@ -87,11 +87,6 @@ const bentoActs = [
     // every other CTA on the site uses.
     cta: "Gala Enquiry",
   },
-  {
-    act: "Act V · Solar Devotion",
-    ...stubAct("surya-namaskar"),
-    cta: "Reserve Act",
-  },
 ];
 
 // TODO.md Phase 7 (2026-09-22): this page previously rendered its 5 act
@@ -225,7 +220,7 @@ export function RepertoireActs() {
           </article>
         ))}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6">
           {bentoActs.map((piece) => (
             <article
               key={piece.title}

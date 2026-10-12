@@ -130,25 +130,6 @@ export const repertoire: RepertoireAct[] = [
     imageAlt:
       "Performers in saffron, white and green body paint kneeling in a tricolour formation with a blue Ashoka Chakra wheel behind them, on a beach",
   },
-  {
-    slug: "surya-namaskar",
-    category: "Solar Rhythms & Formation",
-    title: "Surya Namaskar: The 12 Solar Salutations",
-    badge: "Precise Group Formations",
-    tagline: "Ensemble in Perfect Formation",
-    description:
-      "Physical theater combining sun-salutation postures with the troupe's martial-arts-rooted ensemble choreography.",
-    metaDescription:
-      "Surya Namaskar: The 12 Solar Salutations — physical theater from Prince Dance Group, India's Got Talent Season 1 champions, Odisha.",
-    image: "/images/archive/acrobatic-pyramid.jpg",
-    // 2026-09-25: was performance-4.jpg (the same Ganesha-masked piece as
-    // Vande Mataram used to show — no sun-salutation imagery). Now a
-    // precise group-formation photo under warm golden light, matching the
-    // "Precise Group Formations" badge; not literal sun-salutation
-    // postures.
-    imageAlt:
-      "Performers stacked in a tall acrobatic pyramid on a studio floor under a warm golden light",
-  },
 ];
 
 // §29 content simplification: descriptions/focus tags rewritten in plain,

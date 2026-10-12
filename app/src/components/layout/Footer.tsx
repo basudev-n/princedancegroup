@@ -103,9 +103,13 @@ export function Footer() {
               </span>
             </div>
             <p className="font-sans text-sm text-on-surface-danza-muted leading-relaxed max-w-sm">
-              Bringing India&apos;s ancient epics to life through dance and
-              storytelling on stage. Winners of India&apos;s Got Talent,
-              known for unforgettable performances.
+              Prince Dance Group is one of the best dance groups in Odisha,
+              India, led by the visionary Krishna Mohan Reddy, who also serves
+              as the choreographer. Known for their unique and mesmerizing
+              performances, the group blends creativity, precision, and
+              passion, captivating audiences across the nation. With
+              Krishna&rsquo;s expert guidance, Prince Dance Group continues to
+              set new standards in the world of dance.
             </p>
             <div className="flex flex-wrap items-center gap-2">
               <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-card border border-surface-border text-danza-gold">

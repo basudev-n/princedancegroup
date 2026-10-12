@@ -47,7 +47,6 @@ const featured = bySlug("dashavatar");
 const pieces = [
   bySlug("shiva-tandava"),
   bySlug("krishna-leela"),
-  bySlug("surya-namaskar"),
   bySlug("vande-mataram"),
 ];
 
@@ -166,14 +165,14 @@ export function LivingArchive() {
             sizes="(min-width: 640px) 50vw, 100vw"
             onEnlarge={() => openAt(lightboxIndexFor(featured.image))}
           />
-          {pieces.map((p) => (
+          {pieces.map((p, i) => (
             <Tile
               key={p.slug}
               title={p.title}
               tagline={p.tagline}
               image={p.image}
               imageAlt={p.imageAlt}
-              className="aspect-[4/5]"
+              className={`aspect-[4/5] ${i === pieces.length - 1 ? "lg:col-span-2 lg:aspect-auto" : ""}`}
               sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
               onEnlarge={() => openAt(lightboxIndexFor(p.image))}
             />

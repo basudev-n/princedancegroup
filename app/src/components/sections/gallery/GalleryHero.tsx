@@ -25,7 +25,7 @@ import { heroStats } from "@/content/home";
 // controls. Revisit as a real filter bar if the act list ever passes ~8
 // (this file's own longstanding note).
 const filters = [
-  "All Acts (5)",
+  "All Acts (4)",
   "Mythological Epics",
   "Martial & Power Formations",
   "Patriotic Anthems",

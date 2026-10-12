@@ -59,16 +59,10 @@ export function Hero() {
               Unforgettable Shows.
             </h1>
             <p className="font-sans text-base text-on-surface-danza-muted max-w-lg mb-8">
-              A striking blend of ancient{" "}
-              <strong className="text-on-surface-danza font-semibold">
-                Mayurbhanj Chhau martial acrobatics
-              </strong>
-              , classical{" "}
-              <strong className="text-on-surface-danza font-semibold">
-                Odissi temple balance
-              </strong>
-              , and bold stage formations &mdash; crafted for grand
-              celebrations, corporate events, and cultural festivals.
+              A spectacular blend of powerful choreography, precise formations,
+              expressive storytelling, and dynamic stagecraft &mdash; crafted to
+              create unforgettable experiences for grand celebrations, corporate
+              events, cultural festivals, and prestigious stages.
             </p>
             <div className="flex flex-wrap items-center gap-4 mb-8">
               <Link

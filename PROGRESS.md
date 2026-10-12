@@ -8,6 +8,16 @@ the user) to see what's real vs. planned.
 
 ## Decisions log
 
+- **2026-10-12 — Footer/hero copy replaced; Surya Namaskar removed.** Client
+  supplied exact replacement text for the footer brand blurb and the Home
+  hero paragraph (applied verbatim; the hero's two bolded Chhau/Odissi
+  phrases are gone with the old sentence). "Surya Namaskar" removed from
+  `content/home.ts` (client: no such act exists) and from Home/Gallery/
+  About/sitemap-driven pages; `/repertoire/surya-namaskar` no longer exists;
+  Gallery now says "All Acts (4)" and its closing card spans full width;
+  About's archive grid's last tile spans 2 columns to avoid a gap.
+  `content.md` was empty (0 bytes) when first checked — blog content pending.
+
 - **2026-09-28 — A video for every act (18 YouTube links from the client).**
   Client sent 18 links to their own YouTube channel ("princedancegroup"):
   14 signature acts + 4 customised special acts. A verification agent
