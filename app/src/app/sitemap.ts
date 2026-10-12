@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { services } from "@/content/services";
 import { repertoire } from "@/content/home";
+import { journalEntries } from "@/content/journal";
 import { siteUrl } from "@/lib/siteUrl";
 
 // DESIGN.md §30. Lists every real, indexable route on the site so search
@@ -55,5 +56,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...serviceRoutes, ...repertoireRoutes];
+  // 2026-10-12: journal articles with a real body (client's content.md) are
+  // indexed; the placeholder-only ones stay excluded (and noindex).
+  const journalRoutes: MetadataRoute.Sitemap = journalEntries
+    .filter((e) => e.blocks)
+    .map((e) => ({
+      url: `${siteUrl}/journal/${e.slug}`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    }));
+
+  return [...staticRoutes, ...serviceRoutes, ...repertoireRoutes, ...journalRoutes];
 }

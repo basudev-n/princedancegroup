@@ -35,10 +35,7 @@ export async function generateMetadata({
     // TODO.md Phase 2.1: noindex until a real article body lands (still a
     // literal TODO(content) placeholder — see sitemap.ts, which excludes
     // all 3 journal articles for the same reason).
-    robots: {
-      index: false,
-      follow: true,
-    },
+    robots: entry.blocks ? undefined : { index: false, follow: true },
     openGraph: {
       type: "article",
       title: entry.title,

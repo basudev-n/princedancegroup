@@ -8,6 +8,20 @@ the user) to see what's real vs. planned.
 
 ## Decisions log
 
+- **2026-10-12 — 3 Journal articles published from `content.md`.** "Why
+  Prince Dance Group Is a Perfect Choice for Grand Events", "Every Step Has
+  a Story", "Best Dance Group to Book for Your Event in India" — verbatim
+  (`content/journalArticles.ts`, rendered by `JournalArticleBody`; no
+  rewording, client is still revising). Left out only two broken pieces: a
+  stray fragment ("not end with India's Got Talent.") inside article 2, and
+  article 3's last paragraph (cut off mid-sentence in the paste). These 3 are
+  indexed + in the sitemap; the 3 old placeholder entries stay noindex.
+  Photos are existing archive shots. **Unconfirmed claims in the copy, shown
+  as written — client to verify:** "more than 17 years" (win was 2009),
+  "T. Krishna Mohan Reddy" (the "T."), "booking listings indicating
+  nationwide travel availability" + the 10-city list, "government programs",
+  "national and international stage programs".
+
 - **2026-10-12 — Footer/hero copy replaced; Surya Namaskar removed.** Client
   supplied exact replacement text for the footer brand blurb and the Home
   hero paragraph (applied verbatim; the hero's two bolded Chhau/Odissi

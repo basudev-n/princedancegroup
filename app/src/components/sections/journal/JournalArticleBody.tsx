@@ -3,6 +3,62 @@ import Link from "next/link";
 import { journalEntries, type JournalEntry } from "@/content/journal";
 import { PlaceholderNote } from "@/components/ui/Placeholder";
 import { journalCategory } from "./journalCategory";
+import type { ArticleBlock } from "@/content/journalArticles";
+
+// Client copy uses **bold** and *italic* markers in places — rendered, not
+// shown literally.
+function Inline({ text }: { text: string }) {
+  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g);
+  return (
+    <>
+      {parts.map((part, i) =>
+        part.startsWith("**") ? (
+          <strong key={i} className="font-semibold text-nocturne-text-primary">{part.slice(2, -2)}</strong>
+        ) : part.startsWith("*") && part.length > 1 ? (
+          <em key={i}>{part.slice(1, -1)}</em>
+        ) : (
+          <span key={i}>{part}</span>
+        ),
+      )}
+    </>
+  );
+}
+
+function ArticleText({ blocks }: { blocks: ArticleBlock[] }) {
+  return (
+    <article className="max-w-2xl flex flex-col gap-5 font-hanken text-base text-nocturne-text-muted leading-relaxed">
+      {blocks.map((b, i) => {
+        if (b.t === "h")
+          return (
+            <h2
+              key={i}
+              style={{ fontFamily: "var(--font-headline-nocturne)" }}
+              className="mt-6 text-2xl sm:text-3xl font-bold text-nocturne-text-primary"
+            >
+              {b.x}
+            </h2>
+          );
+        if (b.t === "ul")
+          return (
+            <ul key={i} className="flex flex-col gap-2 pl-5 list-disc marker:text-nocturne-gold">
+              {b.x.map((li) => (
+                <li key={li}><Inline text={li} /></li>
+              ))}
+            </ul>
+          );
+        if (b.t === "lines")
+          return (
+            <p key={i}>
+              {b.x.map((l, j) => (
+                <span key={j} className="block"><Inline text={l} /></span>
+              ))}
+            </p>
+          );
+        return <p key={i}><Inline text={b.x} /></p>;
+      })}
+    </article>
+  );
+}
 
 // Nocturne Stage token reskin (DESIGN.md §18). The full article body was
 // never captured in the archived source material (only post titles/teasers
@@ -23,6 +79,9 @@ export function JournalArticleBody({ current }: { current: JournalEntry }) {
   return (
     <section className="relative w-full bg-nocturne-surface-container-lowest overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-16">
+        {current.blocks ? (
+          <ArticleText blocks={current.blocks} />
+        ) : (
         <div className="max-w-2xl rounded-nocturne-lg border-2 border-dashed border-nocturne-stage-border bg-nocturne-surface-container p-8 flex flex-col items-center text-center gap-3">
           <span className="material-symbols-outlined text-[28px] text-nocturne-text-muted opacity-60" aria-hidden="true">
             menu_book
@@ -32,6 +91,7 @@ export function JournalArticleBody({ current }: { current: JournalEntry }) {
             complete write-up for this story.
           </PlaceholderNote>
         </div>
+        )}
 
         {more.length > 0 && (
           <div className="relative mt-16 pt-12 border-t border-nocturne-stage-border">

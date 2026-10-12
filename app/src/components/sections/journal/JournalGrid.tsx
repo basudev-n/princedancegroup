@@ -48,7 +48,7 @@ export function JournalGrid() {
                 alt={featured.imageAlt}
                 fill
                 priority
-                placeholder="blur"
+                placeholder={blurDataURLs[featured.image] ? "blur" : "empty"}
                 blurDataURL={blurDataURLs[featured.image]}
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
                 sizes="(min-width: 768px) 50vw, 100vw"

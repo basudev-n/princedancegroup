@@ -1,3 +1,5 @@
+import { articleBlocks, type ArticleBlock } from "./journalArticles";
+
 // Real blog post titles/teasers recovered from "old website.pdf" (Wayback
 // capture, page 5). Full article bodies were not captured in the source —
 // see TODO(content) markers. Do not invent article content.
@@ -25,9 +27,45 @@ export type JournalEntry = {
   // TODO(content): full article body not available in source material —
   // the client should supply the real article text before this is published.
   body: string;
+  // Real article body (client-supplied, content/journalArticles.ts). When
+  // present, the page renders it instead of the "coming soon" note.
+  blocks?: ArticleBlock[];
 };
 
 export const journalEntries: JournalEntry[] = [
+  {
+    slug: "why-prince-dance-group-is-a-perfect-choice-for-grand-events",
+    title: "Why Prince Dance Group Is a Perfect Choice for Grand Events",
+    teaser:
+      "A grand event deserves more than a performance—it deserves a moment that people remember long after the curtains close.",
+    image: "/images/archive/orange-black-stage-group.jpg",
+    imageAlt:
+      "Performers in orange and black costumes mid-pose on a dark stage under red and blue light",
+    body: "",
+    blocks: articleBlocks["why-prince-dance-group-is-a-perfect-choice-for-grand-events"],
+  },
+  {
+    slug: "every-step-has-a-story",
+    title: "Every Step Has a Story",
+    teaser:
+      "Every great performance begins long before the lights come on.",
+    image: "/images/archive/white-costume-stage-pyramid.jpg",
+    imageAlt:
+      "Performers in white costumes stacked in a pyramid on a purple-lit stage, one performer standing on top",
+    body: "",
+    blocks: articleBlocks["every-step-has-a-story"],
+  },
+  {
+    slug: "best-dance-group-to-book-for-your-event-in-india",
+    title: "Best Dance Group to Book for Your Event in India",
+    teaser:
+      "When an event is meant to be remembered, entertainment should be more than a performance—it should be an experience.",
+    image: "/images/archive/tricolour-long-formation.jpg",
+    imageAlt:
+      "Long formation of performers in green, white and saffron paint with an Ashoka Chakra wheel",
+    body: "",
+    blocks: articleBlocks["best-dance-group-to-book-for-your-event-in-india"],
+  },
   {
     slug: "dancers-for-corporate-events-help-your-business-succeed",
     title: "How Dancers for Corporate Events Help Your Business Succeed",

@@ -50,7 +50,7 @@ export function JournalArticleHeader({ entry }: { entry: JournalEntry }) {
             alt={entry.imageAlt}
             fill
             priority
-            placeholder="blur"
+            placeholder={blurDataURLs[entry.image] ? "blur" : "empty"}
             blurDataURL={blurDataURLs[entry.image]}
             className="object-cover"
             sizes="(min-width: 1200px) 1200px, 100vw"

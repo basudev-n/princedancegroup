@@ -7,6 +7,9 @@
 // per-card category tag pattern (DESIGN.md §12). Kept out of journal.ts
 // itself since that content file is reused as-is for this migration.
 const CATEGORY_BY_SLUG: Record<string, string> = {
+  "why-prince-dance-group-is-a-perfect-choice-for-grand-events": "Grand Events",
+  "every-step-has-a-story": "Our Story",
+  "best-dance-group-to-book-for-your-event-in-india": "Book Us",
   "dancers-for-corporate-events-help-your-business-succeed": "Corporate Events",
   "how-indias-got-talent-season-1-winner-changed-the-indian-entertainment-landscape":
     "India's Got Talent",
