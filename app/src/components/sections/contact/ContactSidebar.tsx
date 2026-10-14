@@ -106,6 +106,19 @@ export function ContactDetails() {
               </span>
             </span>
           </a>
+          <a href={`tel:${site.contact.founderPhone.replace(/\s+/g, "")}`} className={rowClass}>
+            <span className="material-symbols-outlined text-[20px] text-nocturne-gold shrink-0" aria-hidden="true">
+              call
+            </span>
+            <span className="flex flex-col leading-tight">
+              <span className="font-hanken text-[10px] font-semibold uppercase tracking-wider text-nocturne-text-muted">
+                Call
+              </span>
+              <span className="font-hanken text-sm font-semibold text-nocturne-text-primary">
+                {site.contact.founderPhone}
+              </span>
+            </span>
+          </a>
           <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className={rowClass}>
             <span className="material-symbols-outlined text-[20px] text-nocturne-gold shrink-0" aria-hidden="true">
               phone_in_talk

@@ -155,6 +155,23 @@ export function Footer() {
                 </span>
               </a>
               <a
+                href={`tel:${site.contact.founderPhone.replace(/\s+/g, "")}`}
+                aria-label={`Call founder ${site.contact.founderPhone}`}
+                className="flex min-h-14 items-center gap-3 rounded-2xl border border-danza-gold/40 bg-danza-gold/5 px-4 py-2.5 hover:bg-danza-gold/10 hover:border-danza-gold transition-colors"
+              >
+                <span className="material-symbols-outlined text-[22px] text-danza-gold shrink-0" aria-hidden="true">
+                  call
+                </span>
+                <span className="flex flex-col leading-tight">
+                  <span className="font-sans text-[10px] font-semibold uppercase tracking-wider text-on-surface-danza-muted">
+                    Call
+                  </span>
+                  <span className="font-sans text-[13px] font-semibold text-white whitespace-nowrap">
+                    {site.contact.founderPhone}
+                  </span>
+                </span>
+              </a>
+              <a
                 href={waHref}
                 target="_blank"
                 rel="noopener noreferrer"

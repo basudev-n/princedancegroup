@@ -21,8 +21,9 @@ export const site = {
   // Input Register #4 — "which phone is the WhatsApp Business line").
   // `founderPhone` is Krishna Mohan Reddy's own direct line — a confirmed
   // fact, but not currently surfaced as a public CTA anywhere on the site
-  // (every "Call Us"/WhatsApp button uses `phone`/`whatsapp` below); add a
-  // display site if the client asks for it specifically.
+  // (every "Call Us"/WhatsApp button uses `phone`/`whatsapp` below).
+  // 2026-10-14: client asked for it to be shown — now a second "Call" row in
+  // the Footer's Get in Touch column and the Contact page's details card.
   contact: {
     phone: "+91 96924 53808",
     whatsapp: "+91 82709 23491",
