@@ -67,6 +67,13 @@ export default function Error({
           <span className="material-symbols-outlined text-[18px]" aria-hidden="true">call</span>
           Or call us directly at {site.contact.phone}
         </a>
+        <a
+          href={`tel:${site.contact.founderPhone.replace(/\s+/g, "")}`}
+          className="inline-flex items-center gap-2 font-sans text-sm font-semibold text-danza-gold hover:underline"
+        >
+          <span className="material-symbols-outlined text-[18px]" aria-hidden="true">call</span>
+          {site.contact.founderPhone}
+        </a>
       </div>
     </section>
   );

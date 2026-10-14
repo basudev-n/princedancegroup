@@ -288,6 +288,13 @@ export function EnquiryForm() {
               Call {site.contact.phone}
             </a>
             <a
+              href={`tel:${site.contact.founderPhone.replace(/\s+/g, "")}`}
+              className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-nocturne-gold hover:text-nocturne-primary transition-colors"
+            >
+              <span className="material-symbols-outlined text-[16px]" aria-hidden="true">call</span>
+              {site.contact.founderPhone}
+            </a>
+            <a
               href={`https://wa.me/${site.contact.whatsapp.replace(/\D/g, "")}`}
               target="_blank"
               rel="noopener noreferrer"

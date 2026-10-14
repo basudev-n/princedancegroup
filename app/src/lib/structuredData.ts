@@ -37,10 +37,10 @@ export function getPerformingGroupJsonLd() {
       postalCode: site.contact.address.pin,
       addressCountry: "IN",
     },
-    // 2026-09-24: organization-level numbers only (general + WhatsApp) —
-    // the founder's personal direct line (`site.contact.founderPhone`)
-    // isn't an organizational contact point.
-    telephone: [site.contact.phone, site.contact.whatsapp],
+    // 2026-10-14: the founder's direct line is now publicly listed by the
+    // client's request, so it's included alongside the general + WhatsApp
+    // numbers.
+    telephone: [site.contact.phone, site.contact.whatsapp, site.contact.founderPhone],
     email: site.contact.email,
     sameAs: Object.values(site.social).filter(Boolean),
     award: "Winner, India's Got Talent Season 1",
