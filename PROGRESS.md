@@ -8,6 +8,21 @@ the user) to see what's real vs. planned.
 
 ## Decisions log
 
+- **2026-10-14 — Founder photo with Naveen Patnaik + testimonial portraits.**
+  Home's Founder's Story now shows the achievements-gallery photo
+  `arm-in-arm.jpg` (client confirmed it is Krishna Mohan Reddy with Naveen
+  Patnaik) under the founder portrait, captioned. Testimonials (Home
+  carousel, About grid, Contact quote) now show a round portrait above/beside
+  each name (`ui/TestimonialAvatar.tsx`, `photo` in `content/testimonials.ts`).
+  Client approved showing public figures' photos (the ARCHITECTURE.md §6
+  go-ahead). Photos are Wikimedia Commons images (identity from each file's
+  own page, by an agent — not faces), square-cropped; sources/licences in
+  `app/public/images/testimonials/CREDITS.md` and a credit line on /about.
+  The staged 100px headshots in `assets/source/` were not used: their
+  filenames didn't match the faces. Note V.K. Pandian's Commons photo is a
+  speaking-at-event shot; Shah Rukh/Sonali/Shekhar sources are small
+  (~300-370px) so avatars are modest.
+
 - **2026-10-12 — 3 Journal articles published from `content.md`.** "Why
   Prince Dance Group Is a Perfect Choice for Grand Events", "Every Step Has
   a Story", "Best Dance Group to Book for Your Event in India" — verbatim

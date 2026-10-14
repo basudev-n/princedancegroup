@@ -1,3 +1,4 @@
+import { TestimonialAvatar } from "@/components/ui/TestimonialAvatar";
 import { testimonials } from "@/content/testimonials";
 
 // Real testimonials (content/testimonials.ts) — not part of the source
@@ -52,17 +53,25 @@ export function Testimonials() {
                   &ldquo;{t.quote}&rdquo;
                 </p>
               </div>
-              <footer className="mt-5 pt-4 border-t border-nocturne-stage-border">
+              <footer className="mt-5 pt-4 border-t border-nocturne-stage-border flex items-center gap-3">
+                <TestimonialAvatar photo={t.photo} size={48} className="shrink-0" />
+                <div>
                 <cite className="block font-hanken text-sm font-bold text-nocturne-text-primary not-italic">
                   {t.name}
                 </cite>
                 <span className="font-hanken text-xs text-nocturne-text-muted">
                   {t.role}
                 </span>
+                </div>
               </footer>
             </blockquote>
           ))}
         </div>
+        <p className="mt-6 font-hanken text-xs text-nocturne-text-muted">
+          Photo credits (Wikimedia Commons): Government of Odisha (CC BY 4.0),
+          Bollywood Hungama (CC BY 3.0), TennisPremierLeague (CC BY-SA 4.0),
+          President&rsquo;s Secretariat (GODL-India).
+        </p>
       </div>
     </section>
   );

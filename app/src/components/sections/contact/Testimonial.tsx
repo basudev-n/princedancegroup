@@ -1,3 +1,4 @@
+import { TestimonialAvatar } from "@/components/ui/TestimonialAvatar";
 import { testimonials } from "@/content/testimonials";
 
 // DESIGN.md §22 (new section). A single, static pull-quote — not the full
@@ -40,7 +41,8 @@ export function Testimonial() {
         >
           {quote.quote}
         </p>
-        <span className="mt-6 block font-hanken text-sm font-semibold uppercase tracking-widest text-nocturne-gold">
+        <TestimonialAvatar photo={quote.photo} size={64} className="mx-auto mt-6" />
+        <span className="mt-3 block font-hanken text-sm font-semibold uppercase tracking-widest text-nocturne-gold">
           {quote.name}
         </span>
         <span className="mt-1 block font-hanken text-xs text-nocturne-text-muted">

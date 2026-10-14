@@ -30,16 +30,33 @@ export function FounderSpotlight() {
         </h2>
 
         <div className="rounded-2xl bg-surface-elevated border border-surface-border overflow-hidden grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-          <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[420px]">
-            {founder.photo && (
+          <div className="grid grid-rows-[auto_auto] md:grid-rows-[3fr_2fr]">
+            <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[420px]">
+              {founder.photo && (
+                <Image
+                  src={founder.photo}
+                  alt={founder.photoAlt ?? founder.name}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                />
+              )}
+            </div>
+            {/* 2026-10-14: the founder with Naveen Patnaik — the same
+                photo as /about's achievements gallery (arm-in-arm.jpg);
+                client confirmed who is pictured and asked for it here. */}
+            <figure className="relative aspect-[4/3] md:aspect-auto md:min-h-[260px] border-t border-surface-border">
               <Image
-                src={founder.photo}
-                alt={founder.photoAlt ?? founder.name}
+                src="/images/achievements/arm-in-arm.jpg"
+                alt="Krishna Mohan Reddy, in a striped shirt, smiling with Naveen Patnaik, former Chief Minister of Odisha, in a white kurta"
                 fill
-                className="object-cover"
+                className="object-cover object-[50%_30%]"
                 sizes="(min-width: 768px) 50vw, 100vw"
               />
-            )}
+              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-5 pb-4 pt-10 font-sans text-xs font-semibold text-white">
+                With Naveen Patnaik, former Chief Minister of Odisha
+              </figcaption>
+            </figure>
           </div>
           <div className="p-8 md:p-10 flex flex-col justify-center">
             <span className="inline-block w-fit px-3 py-1 rounded-full bg-surface-card text-xs font-semibold uppercase tracking-wide text-on-surface-danza-muted mb-4">

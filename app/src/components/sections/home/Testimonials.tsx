@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { testimonials } from "@/content/testimonials";
+import { TestimonialAvatar } from "@/components/ui/TestimonialAvatar";
 
 // DESIGN.md §20/§21. Full-bleed single rotating pull-quote, not a 3-up
 // card grid — a card grid here would just be another instance of the
@@ -13,9 +14,9 @@ import { testimonials } from "@/content/testimonials";
 // asked for this section's *functionality* to match how much it matters,
 // so §21 adds real prev/next controls, hover-to-pause, and keyboard
 // navigation on top of the original auto-rotate + dot pagination. All 7
-// quotes are real (old website.pdf, `content/testimonials.ts`) — no
-// public-figure photos are shown, text-only, per the testimonial-photo
-// caveat (ARCHITECTURE.md §6).
+// quotes are real (old website.pdf, `content/testimonials.ts`). 2026-10-14:
+// each person's photo now shows above their name — client gave the
+// go-ahead the testimonial-photo caveat (ARCHITECTURE.md §6) asked for.
 //
 // TODO.md Phase 4.2 (2026-09-21) had trimmed this to 3 names so Home
 // wouldn't be identical to About's full 7-quote archive. Client reviewed
@@ -132,7 +133,8 @@ export function Testimonials() {
                 {current.quote}
               </p>
 
-              <span className="mt-6 block font-sans text-sm font-semibold uppercase tracking-widest text-danza-gold">
+              <TestimonialAvatar photo={current.photo} size={72} className="mx-auto mt-6" />
+              <span className="mt-3 block font-sans text-sm font-semibold uppercase tracking-widest text-danza-gold">
                 {current.name}
               </span>
               <span className="mt-1 block font-sans text-xs text-on-surface-danza-muted">
